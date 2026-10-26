@@ -52,6 +52,15 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 
 **Saving results:** result links are temporary. Ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory. CapCut may add an "AI" watermark to generated media.
 
+## Known limitations
+
+- **Claude Code only.** CapCut's login accepts local callback addresses only, so the claude.ai website and cloud sessions cannot connect. CapCut's interactive cards are not shown; claudecut asks questions and shows results in the chat instead.
+- **Draft editing** covers text, captions, music, sound effects and main-track video clips. Filters, transitions, effects, text templates, stickers and picture-in-picture must be added in the CapCut web editor for now.
+- **Captions for mixed-language videos** may miss short phrases in the second language. claudecut never fills gaps with its own translation; it tells you which parts have no captions.
+- **Emoji** in draft text may appear as plain monochrome symbols in CapCut's editor.
+- **AI rough cuts** may use subscription credits and do not show a quote before starting.
+- **Upload permission:** Claude Code asks before running CapCut's upload-credential tool, because it issues short-lived upload keys.
+
 ## Development
 
 ```

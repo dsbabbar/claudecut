@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <rect width="1024" height="1024" rx="224" fill="#C8613F"/>
+  <g transform="translate(232 282)">
+    <rect x="0" y="0" width="560" height="460" rx="56" fill="#FFF7EF"/>
+    <g fill="#C8613F">
+      <rect x="36" y="40" width="56" height="56" rx="12"/>
+      <rect x="36" y="134" width="56" height="56" rx="12"/>
+      <rect x="36" y="228" width="56" height="56" rx="12"/>
+      <rect x="36" y="322" width="56" height="56" rx="12"/>
+      <rect x="468" y="40" width="56" height="56" rx="12"/>
+      <rect x="468" y="134" width="56" height="56" rx="12"/>
+      <rect x="468" y="228" width="56" height="56" rx="12"/>
+      <rect x="468" y="322" width="56" height="56" rx="12"/>
+    </g>
+    <rect x="128" y="40" width="304" height="380" rx="28" fill="#2B2A33"/>
+    <path d="M232 170 L340 230 L232 290 Z" fill="#FFF7EF"/>
+  </g>
+  <path d="M824 96 C834 148 852 166 904 176 C852 186 834 204 824 256 C814 204 796 186 744 176 C796 166 814 148 824 96 Z" fill="#FFF7EF"/>
+  <path d="M690 120 C694 142 702 150 724 154 C702 158 694 166 690 188 C686 166 678 158 656 154 C678 150 686 142 690 120 Z" fill="#FFF7EF" opacity="0.85"/>
+</svg>
