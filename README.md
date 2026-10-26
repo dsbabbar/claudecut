@@ -37,16 +37,18 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 
 | Feature | Example prompt | Status |
 | --- | --- | --- |
-| Template search | "Find fast-paced 9:16 product launch templates" | Ready to test |
-| Image generation | "Generate four poster concepts for a summer sale" | Ready to test |
+| Template search | "Find fast-paced 9:16 product launch templates" | Available |
+| Image generation | "Generate four poster concepts for a summer sale" | Available |
 | Video generation | "Make a 5-second clip of waves at sunset" | Ready to test |
-| Material search | "Find upbeat background music and a bold title font" | Ready to test |
+| Material search | "Find upbeat background music and a bold title font" | Available |
 | Auto captions | "Add English captions to this video and give me an SRT" | Ready to test with media already in CapCut; local files need uploads |
 | AI rough cut | "Cut these clips into a 30-second highlight reel" | Needs local uploads (planned) |
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Planned |
 | Draft editing | "Add the music and captions to my draft" | Planned |
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
+
+**Saving results:** ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory.
 
 ## Development
 
