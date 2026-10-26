@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { applyOperations, draftDuration, newDraft, summarize, validate } from '../scripts/stdraft.mjs'
+import { applyOperations, draftDuration, fontProblems, newDraft, summarize, validate } from '../scripts/stdraft.mjs'
 
 const script = fileURLToPath(new URL('../scripts/stdraft.mjs', import.meta.url))
 
@@ -132,4 +132,18 @@ test('builds a new draft and adds an uploaded clip with captions', () => {
   ])
   assert.deepEqual(validate(draft), [])
   assert.match(summarize(draft), /^Canvas 1080x1920, length 4\.0s, 2 segments/)
+})
+
+test('handles untimed segments and flags fonts that are not library fonts', () => {
+  const d = sampleDraft()
+  d.segments.push({ id: 'patch_0', type: 'PATCH', parent_id: 'draft', attributes: { note: 'added by an editor app' } })
+  d.segments.find(s => s.id === 'title').attributes.font = 'vimo://C:/Users/someone/fonts/Local.ttf'
+  assert.deepEqual(validate(d), [])
+  assert.deepEqual(fontProblems(d), ['title'])
+  const text = summarize(d)
+  assert.match(text, /Other segments kept unchanged: patch_0 \(PATCH\)/)
+  assert.match(text, /Warning: .*title/)
+  const { draft } = applyOperations(d, [{ op: 'update', id: 'title', font: 'vimo://7317175475195875841' }])
+  assert.deepEqual(fontProblems(draft), [])
+  assert.ok(draft.segments.some(s => s.id === 'patch_0'), 'unknown segments are preserved')
 })

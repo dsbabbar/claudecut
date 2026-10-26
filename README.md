@@ -46,7 +46,7 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 | Auto captions | "Add English captions to this video and give me an SRT" | Available |
 | AI rough cut | "Cut these clips into a 30-second highlight reel" | Available |
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Available |
-| Draft editing | "Add the music and captions to my draft" | Available |
+| Draft editing | "Add the music and captions to my draft" | Available (drafts also open in the CapCut desktop app) |
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
 
@@ -58,6 +58,7 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 - **Draft editing** covers text, captions, music, sound effects and main-track video clips. Filters, transitions, effects, text templates, stickers and picture-in-picture must be added in the CapCut web editor for now.
 - **Captions for mixed-language videos** may miss short phrases in the second language. claudecut never fills gaps with its own translation; it tells you which parts have no captions.
 - **Emoji** in draft text may appear as plain monochrome symbols in CapCut's editor.
+- **Fonts:** claudecut sets a CapCut library font on text it adds, so it looks the same in the web editor and the desktop app. Text without a font, or with a local font saved by the desktop app, can wrap differently between the two.
 - **AI rough cuts** may use subscription credits and do not show a quote before starting.
 - **Upload permission:** Claude Code asks before running CapCut's upload-credential tool, because it issues short-lived upload keys.
 

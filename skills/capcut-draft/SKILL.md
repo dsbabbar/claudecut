@@ -7,7 +7,7 @@ description: Add, change or remove captions, text, music and video clips in a Ca
 
 A CapCut draft is a cloud project that the user can also open in the CapCut web editor. Claude edits it as an STDraft JSON document: download it, change it locally with `scripts/stdraft.mjs`, then save it back. CapCut validates every save.
 
-The web editor always wins. If the user saves in the browser while you are editing, your save is rejected with a version conflict, by design.
+The user's own edits always win. Drafts also sync to the CapCut desktop app, and if the user saves in the web editor or the desktop app while you are editing, your save is rejected with a version conflict, by design. Simply having the draft open in the desktop app can save new versions.
 
 ## Draft sessions
 
@@ -22,7 +22,7 @@ Reuse the session the user is clearly continuing. If several could apply, ask wh
 - **An uploaded video with no draft:** get its width, height and duration from `capcut_batch_media_url` (`vids`). Phone videos are often stored landscape with a rotation flag, so for a local file also check with `ffprobe` when available, and swap width and height when it is rotated 90 or 270 degrees. Ask the user if the shape is still unclear. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" new --width <w> --height <h> --out <tmp>/draft.json`, then include an `add_video` operation for the clip (`source_end_ms` = its duration) in the first edit round, and call `start_stdraft_session`. The first save, with an empty `base_package_id`, creates the draft.
 - **Nothing to start from:** ask the user what to build on, such as a rough cut or uploaded clips.
 
-Save the document as UTF-8 JSON in a temporary folder, for example `<tmp>/draft.json`. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" summary --in <tmp>/draft.json` to see the timeline, with each segment's id, type, layer, times and source.
+Save the document as UTF-8 JSON in a temporary folder, for example `<tmp>/draft.json`. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" summary --in <tmp>/draft.json` to see the timeline, with each segment's id, type, layer, times, source and font. Segments without a timeline (such as `PATCH` segments added by the CapCut desktop app) are listed separately and must be left unchanged. If the summary warns that text has a font that is not a CapCut library font (often a local font path saved by the desktop app), tell the user it may show in a fallback font and offer to set a library font with `update`.
 
 ## Edit round
 
@@ -38,7 +38,7 @@ Save the document as UTF-8 JSON in a temporary folder, for example `<tmp>/draft.
    | `place` | `id`, then any of `start_ms`, `duration_ms`, `position_x`, `position_y`, `layer` | Moves, trims or repositions a segment |
    | `remove` | `id` | Deletes a segment. Gaps it leaves are not closed. |
 
-   `font` takes a font's `vimo://` `stdraft_uri` from `capcut-materials`. Font support is experimental: if CapCut rejects it, drop the `font` field and say the default font was used.
+   **Always set `font` on text you add or restyle.** Without one, the CapCut web editor and desktop app each substitute their own default font, so the same text can wrap differently. `font` takes a font's `vimo://<id>` `stdraft_uri` from `capcut-materials`. Unless the user named a font, search fonts once per conversation (`search_capcut_material` with `type: "font"`, `top_n: 20`), pick a clean, legible sans-serif from the descriptions, tell the user which one you chose, and reuse it for all new text.
 
 2. **Apply locally:** `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" apply --in <tmp>/draft.json --ops <tmp>/ops.json --out <tmp>/draft-new.json`. On an error, fix the operations and run again. Nothing is written until every operation succeeds and the result validates. Run `summary` on the result and check it matches the request.
 3. **Check the version, right before saving:** call `check_stdraft_state` with the `session_id` and your current `package_id` (empty for a new draft). This also shows an "editing" overlay in the web editor for up to 20 minutes, so only call it when you are about to save. If `stale` is true, the user changed the draft in the browser: call `get_stdraft_snapshot`, apply the same operations to that newer document, and tell the user you built on their latest changes.
