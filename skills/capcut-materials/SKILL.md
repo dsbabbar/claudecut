@@ -19,12 +19,16 @@ Only some types search by `prompt`:
 | --- | --- |
 | `sound_effect`, `video_effect`, and `music` in most regions | `font`, `text_effect`, `text_template`, `face_effect`, `transition`, `filter`, and `music` for US accounts |
 
-For curated types, the prompt does not change the results. Request a larger `top_n` and pick the best fits yourself from the titles and descriptions, and tell the user you chose from a curated list.
+For curated types, the prompt does not change the results. Tell the user plainly that CapCut returned its curated list for their account rather than results matched to their request. If the results look generic (unrelated titles, one artist, no descriptions), music is curated for this account too, so say so.
 
 ## Present results
 
-Show a numbered list with each item's title, a short description, duration for audio, and a preview link when one is returned. Keep each item's `resource_id` and any `stdraft_uri` in the conversation. The `capcut-draft` skill needs them to add the material to a draft.
+Show a numbered list with each item's title, the description CapCut returned, duration for audio, and a preview link when one is returned. Keep each item's `resource_id` and any `stdraft_uri` in the conversation for later use.
+
+Describe only what the result says. Never guess a track's mood, tempo or sound from its title, and never rank items by how well they fit when the results carry no descriptive information. If you can't tell which items fit, say so and suggest the user listen to them in CapCut.
 
 Do not invent materials. If nothing fits, say so and suggest a different description.
 
-If the user asks to add a material to a video, finish the search, then follow the `capcut-draft` skill.
+## Adding materials to a video
+
+Check the `capcut-draft` skill before offering this. While it says draft editing is not available, do not offer to add materials to a draft or video. Instead, tell the user they can add the chosen item in the CapCut editor by searching its title there.
