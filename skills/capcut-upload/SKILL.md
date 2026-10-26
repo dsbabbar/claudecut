@@ -11,6 +11,8 @@ Supported: videos up to 1 GiB (mp4, mov, m4v, mkv, webm, avi, mpeg, mpg, 3gp, ts
 
 ## Workflow
 
+Use the file paths the user gives. If a file was named without a full path and is not in the current folder, ask the user where it is. Never search whole drives or the user's home folder for it.
+
 1. **Describe the batch.** Run:
    `node "${CLAUDE_PLUGIN_ROOT}/scripts/capcut-upload.mjs" describe <file1> <file2> ...`
    It prints `{"files": [...]}` with each file's name and size, or an error for unsupported, empty or oversized files. Report errors and continue with the valid files only if the user agrees.
