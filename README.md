@@ -46,7 +46,7 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 | Auto captions | "Add English captions to this video and give me an SRT" | Available |
 | AI rough cut | "Cut these clips into a 30-second highlight reel" | Available |
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Available |
-| Draft editing | "Add the music and captions to my draft" | Ready to test |
+| Draft editing | "Add the music and captions to my draft" | Available |
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
 
