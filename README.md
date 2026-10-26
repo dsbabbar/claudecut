@@ -48,7 +48,7 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
 
-**Saving results:** ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory.
+**Saving results:** result links are temporary. Ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory. CapCut may add an "AI" watermark to generated media.
 
 ## Development
 
