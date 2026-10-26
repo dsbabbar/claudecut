@@ -1,0 +1,22 @@
+{
+  "name": "claudecut",
+  "version": "0.1.0",
+  "description": "Unofficial community plugin that connects Claude Code to CapCut's AI video tools: template search, image and video generation, captions, AI rough cuts, uploads and draft editing. Not affiliated with CapCut or ByteDance.",
+  "author": {
+    "name": "dsbabbar",
+    "url": "https://github.com/dsbabbar"
+  },
+  "homepage": "https://github.com/dsbabbar/claudecut",
+  "repository": "https://github.com/dsbabbar/claudecut",
+  "license": "MIT",
+  "keywords": [
+    "capcut",
+    "video",
+    "video-editing",
+    "image-generation",
+    "video-generation",
+    "captions",
+    "templates",
+    "mcp"
+  ]
+}
