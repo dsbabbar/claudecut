@@ -19,7 +19,7 @@ All AI generation, search and editing run on CapCut's servers under **your own C
 
 - [Claude Code](https://code.claude.com) 2.1.275 or later, running on your own computer (the CapCut login sends you back to a local address, so cloud and browser-only sessions cannot complete it)
 - A CapCut account. Your account region must match your internet connection's region (a US connection needs a US-registered account).
-- Node.js 20 or later for the media uploader
+- Node.js 20 or later for uploads, downloads and subtitle export
 
 ## Install
 
@@ -31,6 +31,8 @@ In Claude Code:
 
 Then run `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
 
+Uploading local files uses CapCut's `capcut_asset_upload_credential` tool, which issues short-lived upload credentials. Claude Code asks before running it. Approve it when asked, or allow it permanently with `/permissions`.
+
 If you previously added CapCut's servers by hand, remove them so each tool is listed once: `claude mcp remove capcut` and `claude mcp remove capcut-cards`.
 
 ## What you can ask for
@@ -41,9 +43,9 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 | Image generation | "Generate four poster concepts for a summer sale" | Available |
 | Video generation | "Make a 5-second clip of waves at sunset" | Ready to test |
 | Material search | "Find upbeat background music and a bold title font" | Available |
-| Auto captions | "Add English captions to this video and give me an SRT" | Ready to test with media already in CapCut; local files need uploads |
-| AI rough cut | "Cut these clips into a 30-second highlight reel" | Needs local uploads (planned) |
-| Local uploads | "Use ./footage/intro.mp4 as the reference" | Planned |
+| Auto captions | "Add English captions to this video and give me an SRT" | Ready to test |
+| AI rough cut | "Cut these clips into a 30-second highlight reel" | Ready to test |
+| Local uploads | "Use ./footage/intro.mp4 as the reference" | Ready to test |
 | Draft editing | "Add the music and captions to my draft" | Planned |
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
@@ -59,6 +61,10 @@ claude --plugin-dir .
 ```
 
 Skills live in `skills/`, helper scripts in `scripts/` and tests in `tests/`.
+
+## Acknowledgements
+
+The uploader is an independent implementation. Volcengine's open-source [Node.js SDK](https://github.com/volcengine/volc-sdk-nodejs) (Apache-2.0) served as a reference for the VOD and ImageX upload protocols.
 
 ## Privacy and terms
 
