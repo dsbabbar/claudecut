@@ -5,8 +5,8 @@
 // Usage: echo <upload_ticket> | node scripts/dev/probe-upload-ticket.mjs
 //
 // Reads the ticket from stdin so it never appears in process arguments. Tries each request
-// format in turn, stops at the first one that is not rejected as an invalid ticket, and prints
-// only the masked shape of each response. Credential values are never printed.
+// format in turn, stops at the first successful one, and prints only the masked shape of each
+// response. Credential values are never printed.
 
 import fs from 'node:fs'
 
@@ -51,5 +51,5 @@ for (const attempt of attempts) {
     parsed = `<non-JSON body, ${text.length} chars>`
   }
   console.log(JSON.stringify({ attempt: attempt.name, http: response.status, response: mask(parsed) }, null, 2))
-  if (parsed?.error !== 'invalid_upload_ticket') break
+  if (response.ok) break
 }
