@@ -1,0 +1,66 @@
+---
+name: capcut-generate
+description: Generate images or short videos with CapCut AI models (Seedream, GPT Image, Nano Banana Pro, Seedance) from text or reference media. Use for text-to-image, text-to-video, image-to-video, keyframe or reference-based generation, checking or cancelling a running generation, and showing generated results.
+---
+
+# Generate images and videos with CapCut
+
+Generation can spend the user's CapCut credits. **Never approve a charge on the user's behalf.**
+
+## Choose the output
+
+Pick by what the user wants to get, not by what they attached. An image that should move becomes a video. A poster or still frame is an image. If unclear, ask only "image or video?". Handle a request for both as two separate generations, one after the other.
+
+## Settings
+
+Use what the user specified and leave the rest to server defaults. If a requested value is not allowed for the model, say so and suggest the closest valid option instead of silently changing it.
+
+### Images: `capcut_image_generate`
+
+| Field | Values |
+| --- | --- |
+| `model` (required) | `seedream5pro` (default choice), `gpt_image_2`, `seedream5`, `seedream4.3`, `nano_banana_pro` |
+| `count` | 1 to 10, default 4 |
+| `ratio` | `adaptive` (fit references), `16:9`, `3:2`, `4:3`, `5:4`, `1:1`, `4:5`, `3:4`, `2:3`, `9:16`, `21:9` |
+| `resolution` | `1K`, `2K`, `4K` |
+| `model_options.quality` | GPT Image 2 only: `low`, `medium`, `high` |
+| `reference_assets` | Up to 10 images: `{"role": "reference", "media_type": "image", "uri": <ImageX URI>}` |
+
+### Videos: `capcut_video_generate`
+
+| Field | Values |
+| --- | --- |
+| `model` (required) | `seedance2` (default choice), `seedance2.5`, `seedance2_fast`, `seedance2_mini`, `seedance1_fast` |
+| `count` | 1 to 4, default 1 |
+| `duration_ms` | Whole seconds. `seedance1_fast`: 2000 to 12000. `seedance2.5`: 4000 to 30000. Others: 4000 to 15000. Default 5000. |
+| `ratio` | `adaptive`, `21:9`, `16:9`, `9:16`, `4:3`, `1:1`, `3:4` |
+| `resolution` | `480p`, `720p`, `1080p`, `4K` |
+| `reference_assets` | Up to 50. Images use `uri` and may have role `reference`, `first_frame` or `last_frame`. Video and audio use `vid` with role `reference`. |
+
+Every request needs a non-empty `prompt`. If the user gave none, ask for one. Do not invent the creative concept. Keep the user's wording and language. You may tidy it into a clear prompt without changing the idea.
+
+Reference files on disk must be uploaded first with the `capcut-upload` skill. Never pass local paths or public URLs as references.
+
+## Workflow
+
+1. **Draft session.** Generation needs a `draft_session_id`. Reuse the one already used in this conversation. Otherwise call `start_stdraft_session` and keep its `session_id`.
+2. **Optional estimate.** You may call `prepare_for_image_generation` or `prepare_for_video_generation` with the same settings to get a credit estimate and a `generate_id`. If it returns a `generate_id`, pass it to the generate call unchanged.
+3. **Submit.** Call the generate tool with `draft_session_id` and `spec`. Omit `confirmed`, `unique_key` and `dont_ask_again` on the first call.
+4. **Handle the response.**
+   - **Queued** (free or already covered): keep the `task_id` and go to step 5.
+   - **`CONFIRMATION_REQUIRED`**: tell the user the exact `credits_amount` from the confirmation details and what will be generated, then **stop and wait for a clear yes**. On yes, call the same tool again with the identical `spec`, `draft_session_id`, the server-issued `unique_key` and `generate_id`, and `confirmed: true`. If the quote changes, ask again. Set `dont_ask_again: true` only if the user explicitly asks to stop being asked, and warn that it applies to all future generations on their account.
+   - **Membership or credit purchase needed**: give the user the purchase or benefits link from the response and wait. After they confirm the purchase, retry with the same `generate_id`, `unique_key` and `spec`.
+5. **Poll.** Call `capcut_generation_poll` with the `task_id` until the task is finished and billing has settled. Respect any suggested wait. Tell the user the estimated wait if one is given.
+6. **Show results.** Call `generation_result` with the `task_id`. List every result with its link, and state the actual credits charged. Mention any results that failed.
+
+Never resubmit a request that already has a `task_id` or `unique_key`. Continue it instead, so the user is not charged twice.
+
+## Cancel
+
+Only when the user asks: call `capcut_generation_cancel` with the `task_id`, then poll once to confirm the final state and any refund.
+
+## Errors
+
+- Validation error: explain the invalid field and the allowed values.
+- Authentication error or missing tools: follow the `capcut-connect` skill.
+- Do not fall back to another image or video generator unless the user asks.

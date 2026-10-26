@@ -21,6 +21,7 @@ Work through this before announcing claudecut publicly. Delete this file in the 
 - [ ] `claude plugin validate .` passes with no errors
 - [ ] Original square icon added (512 to 2048 px PNG at `.claude-plugin/icon.png`)
 - [ ] `privacyPolicyUrl` set in `plugin.json`
-- [ ] Each README feature marked "In progress" tested end to end and updated to "Available"
+- [ ] Each README feature marked "Ready to test" tested end to end and updated to "Available"
 - [ ] Fresh install tested on Windows and macOS with `/plugin install claudecut --marketplace dsbabbar/claudecut`
+- [ ] Placeholder skills `skills/capcut-upload` and `skills/capcut-draft` either implemented or clearly marked "not available yet" in the README
 - [ ] Git history checked with `git log -p` for anything in the rules above

@@ -31,20 +31,32 @@ In Claude Code:
 
 Then run `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
 
+If you previously added CapCut's servers by hand, remove them so each tool is listed once: `claude mcp remove capcut` and `claude mcp remove capcut-cards`.
+
 ## What you can ask for
 
 | Feature | Example prompt | Status |
 | --- | --- | --- |
-| Template search | "Find fast-paced 9:16 product launch templates" | In progress |
-| Image generation | "Generate four poster concepts for a summer sale" | In progress |
-| Video generation | "Make a 5-second clip of waves at sunset" | In progress |
-| Material search | "Find upbeat background music and a bold title font" | In progress |
-| Auto captions | "Add English captions to this video and give me an SRT" | In progress |
-| AI rough cut | "Cut these clips into a 30-second highlight reel" | In progress |
+| Template search | "Find fast-paced 9:16 product launch templates" | Ready to test |
+| Image generation | "Generate four poster concepts for a summer sale" | Ready to test |
+| Video generation | "Make a 5-second clip of waves at sunset" | Ready to test |
+| Material search | "Find upbeat background music and a bold title font" | Ready to test |
+| Auto captions | "Add English captions to this video and give me an SRT" | Ready to test with media already in CapCut; local files need uploads |
+| AI rough cut | "Cut these clips into a 30-second highlight reel" | Needs local uploads (planned) |
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Planned |
 | Draft editing | "Add the music and captions to my draft" | Planned |
 
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
+
+## Development
+
+```
+npm test
+claude plugin validate .
+claude --plugin-dir .
+```
+
+Skills live in `skills/`, helper scripts in `scripts/` and tests in `tests/`.
 
 ## Privacy and terms
 
