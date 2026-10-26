@@ -18,7 +18,17 @@ Upload local files first with `capcut-upload`. Each item also needs a `language`
 
 ### Videos with more than one language
 
-CapCut recognizes only the language you request and skips speech in other languages. When a video mixes languages (for example English and Hindi), add one resource per language for the same `vid`, each with its own `language`, in the same batch. Use the same code style for every language, for example `en-US` and `hi-IN`. If the user did not mention languages and the result looks sparse for the video's length, say that other languages may have been skipped and offer to run them.
+CapCut transcribes mainly one language per pass, and on a mixed-language video it can lock onto the dominant language even when you request another. Speech in other languages is skipped.
+
+1. First, add one resource per language for the same `vid`, each with its own `language`, in the same batch. Use the same code style for every language, for example `en-US` and `hi-IN`.
+2. If a language still comes back missing, or returns the same text as another language, and `ffmpeg` is available: find the speech gaps with `ffmpeg -i <video> -af silencedetect=noise=-35dB:d=0.3 -f null -`, cut the untranscribed part into an audio file (`ffmpeg -ss <start> -to <end> -i <video> -vn -c:a aac <part>.m4a`), upload it with `capcut-upload`, and recognize it with the missing language. Add the cut's start time to every cue it returns before merging.
+3. If that is not possible, tell the user which time ranges have speech but no captions.
+
+If the user did not mention languages and the result looks sparse for the video's length, say that other languages may have been skipped and offer to run them.
+
+### Never invent captions
+
+Captions must come from CapCut's recognition. Never fill a missing language with your own translation, guess or paraphrase, and never save one under a language file name. Translate only when the user explicitly asks for a translation, then label it as one in the reply and the file name, for example `<video>.hi.translated.srt`.
 
 ## Workflow
 
@@ -31,4 +41,4 @@ CapCut recognizes only the language you request and skips speech in other langua
    - To show the text, print the captions with their timestamps.
    - To burn captions into the video, check the `capcut-draft` skill first. While it says draft editing is not available, do not offer this. Instead, tell the user they can import the SRT file in the CapCut editor.
 
-If some items fail, report each failed item and keep the successful results. If a membership or purchase prompt is returned, give the user the link and wait.
+If some items fail, report each failed item and keep the successful results. Errors ending in `_unavailable` are temporary problems on CapCut's side: wait about a minute, then retry once with the same `unique_key`. If it fails again, report it and offer to try later. If a membership or purchase prompt is returned, give the user the link and wait.

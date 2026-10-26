@@ -20,8 +20,7 @@ Work through this before announcing claudecut publicly. Delete this file in the 
 ## Release readiness
 
 - [x] README credits Volcengine's Apache-2.0 SDK (`volcengine/volc-sdk-nodejs`) as a protocol reference for the uploader
-- [ ] Uploader tested with a large video (over 100 MB) and with audio
-
+- [ ] Uploader tested with a large video (over 100 MB). Audio (m4a) and a 30 MB multipart video are tested.
 - [ ] `claude plugin validate .` passes with no errors
 - [ ] Original square icon added (512 to 2048 px PNG at `.claude-plugin/icon.png`)
 - [ ] `privacyPolicyUrl` set in `plugin.json`
