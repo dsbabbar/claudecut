@@ -35,6 +35,8 @@ Uploading local files uses CapCut's `capcut_asset_upload_credential` tool, which
 
 If you previously added CapCut's servers by hand, remove them so each tool is listed once: `claude mcp remove capcut` and `claude mcp remove capcut-cards`.
 
+Not sure whether claudecut or editing CapCut's local project files fits your project better? See [Choosing a workflow](docs/choosing-a-workflow.md).
+
 ## What you can ask for
 
 | Feature | Example prompt | Status |
