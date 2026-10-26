@@ -7,6 +7,7 @@ Work through this before announcing claudecut publicly. Delete this file in the 
 | Path | Why it exists | Action |
 | --- | --- | --- |
 | `PUBLIC_RELEASE_CHECKLIST.md` | This checklist | Delete in the release commit |
+| `scripts/dev/` | Development probes for undocumented CapCut endpoints | Delete once the uploader is finished |
 
 ## Rules for everything in this repo
 
