@@ -24,5 +24,5 @@ Never submit the same plan response twice. If unsure whether a response went thr
 ## Follow-up
 
 - To restructure the story, start a new rough cut. It does not pick up later manual or caption edits.
-- To add captions, music or effects to the result, follow the `capcut-draft` skill.
+- To add captions, music or effects to the result, check the `capcut-draft` skill first. While it says draft editing is not available, do not offer this. Point the user to the editor link instead.
 - An editing `session_id` from this skill is not a draft `session_id`. Do not mix them up.

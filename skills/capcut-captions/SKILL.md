@@ -25,6 +25,6 @@ Upload local files first with `capcut-upload`. Each item also needs a `language`
 5. **Deliver.**
    - For subtitle files, convert each caption line in the result to a cue `{"start_ms": ..., "end_ms": ..., "text": ...}` (times in milliseconds from the start of the media), write the cues as a JSON array to a temporary file, then run `node "${CLAUDE_PLUGIN_ROOT}/scripts/captions-to-subtitles.mjs" --format srt --in <cues.json> --out <name>.srt` (use `--format vtt` for WebVTT). Write one file per media item and tell the user where each file is.
    - To show the text, print the captions with their timestamps.
-   - To burn captions into the video, keep the result and follow the `capcut-draft` skill.
+   - To burn captions into the video, check the `capcut-draft` skill first. While it says draft editing is not available, do not offer this. Instead, tell the user they can import the SRT file in the CapCut editor.
 
 If some items fail, report each failed item and keep the successful results. If a membership or purchase prompt is returned, give the user the link and wait.
