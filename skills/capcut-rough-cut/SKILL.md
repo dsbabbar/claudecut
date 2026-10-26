@@ -21,6 +21,8 @@ CapCut's editing agent builds a first cut from uploaded clips and images, someti
 
 Never submit the same plan response twice. If unsure whether a response went through, poll first.
 
+Claude Code cannot display CapCut's interactive cards. If a tool result says to wait for the user to click a card or button, ignore that instruction: ask the question in the chat and submit the answer yourself. Never tell the user to click a card.
+
 ## Follow-up
 
 - To restructure the story, start a new rough cut. It does not pick up later manual or caption edits.

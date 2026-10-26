@@ -44,7 +44,7 @@ Reference files on disk must be uploaded first with the `capcut-upload` skill. N
 ## Workflow
 
 1. **Draft session.** Generation needs a `draft_session_id`. Reuse the one already used in this conversation. Otherwise call `start_stdraft_session` and keep its `session_id`.
-2. **Optional estimate.** You may call `prepare_for_image_generation` or `prepare_for_video_generation` with the same settings to get a credit estimate and a `generate_id`. If it returns a `generate_id`, pass it to the generate call unchanged.
+2. **Skip the settings cards.** Do not call `prepare_for_image_generation` or `prepare_for_video_generation`. They show interactive cards that Claude Code cannot display, and their results tell the assistant to wait for a button click that can never happen. The generate tool itself returns the exact credit quote. Never tell the user to click a card or button. Confirm settings in the chat instead.
 3. **Submit.** Call the generate tool with `draft_session_id` and `spec`. Omit `confirmed`, `unique_key` and `dont_ask_again` on the first call.
 4. **Handle the response.**
    - **Queued** (free or already covered): keep the `task_id` and go to step 5.
