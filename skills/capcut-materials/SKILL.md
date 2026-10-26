@@ -31,4 +31,4 @@ Do not invent materials. If nothing fits, say so and suggest a different descrip
 
 ## Adding materials to a video
 
-Check the `capcut-draft` skill before offering this. While it says draft editing is not available, do not offer to add materials to a draft or video. Instead, tell the user they can add the chosen item in the CapCut editor by searching its title there.
+Music, sound effects and fonts can be added to a draft with the `capcut-draft` skill, using each item's `stdraft_uri`. Filters, transitions, video effects, face effects, text effects and text templates cannot be applied by claudecut yet: tell the user they can add the chosen item in the CapCut web editor by searching its title there.

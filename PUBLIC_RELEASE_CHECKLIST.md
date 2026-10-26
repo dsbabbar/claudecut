@@ -26,5 +26,4 @@ Work through this before announcing claudecut publicly. Delete this file in the 
 - [ ] `privacyPolicyUrl` set in `plugin.json`
 - [ ] Each README feature marked "Ready to test" tested end to end and updated to "Available"
 - [ ] Fresh install tested on Windows and macOS with `/plugin install claudecut --marketplace dsbabbar/claudecut`
-- [ ] Placeholder skill `skills/capcut-draft` either implemented or clearly marked "not available yet" in the README
 - [ ] Git history checked with `git log -p` for anything in the rules above

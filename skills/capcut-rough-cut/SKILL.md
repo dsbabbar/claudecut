@@ -26,5 +26,5 @@ Claude Code cannot display CapCut's interactive cards. If a tool result says to 
 ## Follow-up
 
 - To restructure the story, start a new rough cut. It does not pick up later manual or caption edits.
-- To add captions, music or effects to the result, check the `capcut-draft` skill first. While it says draft editing is not available, do not offer this. Point the user to the editor link instead.
+- To add captions, music or text to the result, or to move, trim or remove clips, follow the `capcut-draft` skill, starting from this rough cut's `video_preview` draft. Filters, transitions and effects are not supported yet: point the user to the editor link for those.
 - An editing `session_id` from this skill is not a draft `session_id`. Do not mix them up.
