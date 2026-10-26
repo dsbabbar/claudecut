@@ -1,0 +1,62 @@
+---
+name: capcut-draft
+description: Add, change or remove captions, text, music and video clips in a CapCut cloud draft, and open the draft in the CapCut web editor. Use when the user wants to edit a rough cut or an existing CapCut draft, burn captions into a video, add background music or text, or move, trim or delete clips.
+---
+
+# Edit CapCut drafts
+
+A CapCut draft is a cloud project that the user can also open in the CapCut web editor. Claude edits it as an STDraft JSON document: download it, change it locally with `scripts/stdraft.mjs`, then save it back. CapCut validates every save.
+
+The web editor always wins. If the user saves in the browser while you are editing, your save is rejected with a version conflict, by design.
+
+## Draft sessions
+
+Each draft session (`session_id` from `start_stdraft_session`) is bound to one cloud draft. A new session has no draft until the first save. Keep together, for each session: its `session_id`, the latest `package_id` (the draft version), the latest document saved to a local file, and its editor link. Never mix up a draft `session_id` with a rough-cut editing session or a generation task.
+
+Reuse the session the user is clearly continuing. If several could apply, ask which draft they mean, describing each by its content, not its ID.
+
+## Get the starting document
+
+- **Draft session already in use:** use the document and `package_id` from your last save. If you have none, call `get_stdraft_snapshot` with the `session_id`.
+- **Fresh rough cut:** call `video_preview` (on `capcut-cards`) with the rough-cut event's `context` and `resources` unchanged. Its output includes the finished draft as an STDraft string. Then call `start_stdraft_session`. The first save, with an empty `base_package_id`, turns the rough cut into an editable cloud draft.
+- **An uploaded video with no draft:** get its width, height and duration from `capcut_batch_media_url` (`vids`). Phone videos are often stored landscape with a rotation flag, so for a local file also check with `ffprobe` when available, and swap width and height when it is rotated 90 or 270 degrees. Ask the user if the shape is still unclear. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" new --width <w> --height <h> --out <tmp>/draft.json`, then include an `add_video` operation for the clip (`source_end_ms` = its duration) in the first edit round, and call `start_stdraft_session`. The first save, with an empty `base_package_id`, creates the draft.
+- **Nothing to start from:** ask the user what to build on, such as a rough cut or uploaded clips.
+
+Save the document as UTF-8 JSON in a temporary folder, for example `<tmp>/draft.json`. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" summary --in <tmp>/draft.json` to see the timeline, with each segment's id, type, layer, times and source.
+
+## Edit round
+
+1. **Plan the operations** from the user's request and the summary. Write them as a JSON array to `<tmp>/ops.json`. Supported operations (times in milliseconds):
+
+   | op | Fields | Notes |
+   | --- | --- | --- |
+   | `add_text` | `content`, `start_ms`, `duration_ms`, optional `position_x`, `position_y` (-1 to 1), `font_size`, `font_color`, `font` | A title or label on its own layer |
+   | `add_captions` | `cues: [{start_ms, end_ms, text}]`, optional `position_y`, `font_size`, `font` | All cues on one new layer, near the bottom by default. Use the `capcut-captions` skill to get cues. |
+   | `add_audio` | `source`, optional `start_ms`, `duration_ms` (default: to the end), `volume`, `fade_in_ms`, `fade_out_ms`, `loop` | Music or sound effect. `source` is a `stdraft_uri` from `capcut-materials` (`vimo://...`) or an uploaded audio `vid` written as `vid://<vid>`. |
+   | `add_video` | `source` (`vid://<vid>`), `source_end_ms`, optional `source_start_ms`, `start_ms`, `volume` | Appends to the end of the main track unless `start_ms` is given |
+   | `update` | `id`, then any of `content`, `volume`, `font_size`, `font_color`, `font`, `fade_in_ms`, `fade_out_ms` | Changes a segment in place. Never add a new segment and call it an update. |
+   | `place` | `id`, then any of `start_ms`, `duration_ms`, `position_x`, `position_y`, `layer` | Moves, trims or repositions a segment |
+   | `remove` | `id` | Deletes a segment. Gaps it leaves are not closed. |
+
+   `font` takes a font's `vimo://` `stdraft_uri` from `capcut-materials`. Font support is experimental: if CapCut rejects it, drop the `font` field and say the default font was used.
+
+2. **Apply locally:** `node "${CLAUDE_PLUGIN_ROOT}/scripts/stdraft.mjs" apply --in <tmp>/draft.json --ops <tmp>/ops.json --out <tmp>/draft-new.json`. On an error, fix the operations and run again. Nothing is written until every operation succeeds and the result validates. Run `summary` on the result and check it matches the request.
+3. **Check the version, right before saving:** call `check_stdraft_state` with the `session_id` and your current `package_id` (empty for a new draft). This also shows an "editing" overlay in the web editor for up to 20 minutes, so only call it when you are about to save. If `stale` is true, the user changed the draft in the browser: call `get_stdraft_snapshot`, apply the same operations to that newer document, and tell the user you built on their latest changes.
+4. **Save:** call `push_stdraft_snapshot` with `session_id`, `base_package_id` (the version you edited, or empty for a new draft) and `stdraft_json` (the new document as a string).
+5. **After a successful save:** keep the returned `server_package_id` as the new version. If `stdraft_json` is returned, save it as the new baseline document, otherwise call `get_stdraft_snapshot`. Tell the user what changed, in plain words, and give them `web_editor_url` with its `web_editor_text` label so they can review and export in the CapCut web editor. Saving a draft does not export a new video file.
+
+## Save errors
+
+| Error | Action |
+| --- | --- |
+| `STDRAFT_INVALID` | Nothing was saved. Read the validation details, fix the operations or document, and try once more. If it fails again, report the details to the user. |
+| `STDRAFT_VERSION_CONFLICT` | Nothing was saved, because the draft changed in the browser. Get the latest snapshot, re-apply the operations, check the summary, then save again with the new `package_id`. |
+| Unsure whether a save went through | Call `check_stdraft_state` or `get_stdraft_snapshot` first. Never repeat a save blindly. |
+| Authentication error | Follow the `capcut-connect` skill. |
+
+## Limits of this version
+
+- Supported: text, captions, music and sound effects, main-track video clips, volume and fades, moving, trimming and removing segments.
+- Not yet supported: filters, transitions, video effects, text effects, text templates, picture-in-picture and stickers. If asked for these, say so, and offer to find the material with `capcut-materials` so the user can apply it in the web editor.
+- CapCut converts drafts between its cloud format and STDraft, so a document read back can differ slightly from the one saved. Always continue from the read-back version.
+- Do not use the CapCut desktop app, browser automation or Computer Use to edit drafts.

@@ -1,0 +1,14 @@
+{
+  "name": "claudecut",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unofficial CapCut plugin for Claude Code",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
