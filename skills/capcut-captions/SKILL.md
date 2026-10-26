@@ -14,7 +14,11 @@ Each media item needs either:
 - a CapCut video or audio `vid` (from the `capcut-upload` skill or earlier work), or
 - a `workspace_id` and `resource_id` pair from CapCut.
 
-Upload local files first with `capcut-upload`. Each item also needs a `language` for the speech, for example `en-US`. Use the language the user gives. If none is given and you cannot tell from context, ask.
+Upload local files first with `capcut-upload`. Each item also needs a `language` for the speech, for example `en-US`. Use the language the user gives. If none is given and you cannot tell from context, ask which languages are spoken.
+
+### Videos with more than one language
+
+CapCut recognizes only the language you request and skips speech in other languages. When a video mixes languages (for example English and Hindi), add one resource per language for the same `vid`, each with its own `language`, in the same batch. Use the same code style for every language, for example `en-US` and `hi-IN`. If the user did not mention languages and the result looks sparse for the video's length, say that other languages may have been skipped and offer to run them.
 
 ## Workflow
 
@@ -23,7 +27,7 @@ Upload local files first with `capcut-upload`. Each item also needs a `language`
 3. **Submit.** Call `auto_caption_submit` with `draft_session_id`, `unique_key` and `resources`.
 4. **Poll.** Call `auto_caption_query` with the `unique_key` until every item is finished. Tell the user progress for long media.
 5. **Deliver.**
-   - For subtitle files, convert each caption line in the result to a cue `{"start_ms": ..., "end_ms": ..., "text": ...}` (times in milliseconds from the start of the media), write the cues as a JSON array to a temporary file, then run `node "${CLAUDE_PLUGIN_ROOT}/scripts/captions-to-subtitles.mjs" --format srt --in <cues.json> --out <name>.srt` (use `--format vtt` for WebVTT). Write one file per media item and tell the user where each file is.
+   - For subtitle files, convert each caption line in the result to a cue `{"start_ms": ..., "end_ms": ..., "text": ...}` (times in milliseconds from the start of the media), write the cues as a JSON array to a temporary file, then run `node "${CLAUDE_PLUGIN_ROOT}/scripts/captions-to-subtitles.mjs" --format srt --in <cues.json> --out <name>.srt` (use `--format vtt` for WebVTT). Write one file per media item and language, named like `<video>.<language>.srt`. For a video with several languages, also write a combined `<video>.srt` from all its cues together; the script orders them by time. Tell the user where each file is.
    - To show the text, print the captions with their timestamps.
    - To burn captions into the video, check the `capcut-draft` skill first. While it says draft editing is not available, do not offer this. Instead, tell the user they can import the SRT file in the CapCut editor.
 
