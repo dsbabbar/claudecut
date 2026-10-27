@@ -20,7 +20,7 @@ A **plugin**. It bundles 8 skills, 4 helper scripts, a setup hook and the addres
 
 ### Was promptcut called claudecut?
 
-Yes. It was renamed so its name doesn't use another company's brand. If you installed `claudecut`, run `claude plugin uninstall claudecut@claudecut` in a terminal, then install promptcut as in [How do I install it?](#how-do-i-install-it), and sign in to CapCut again with `/mcp`.
+Yes. It was renamed so its name doesn't use another company's brand. If you installed `claudecut`, remove it (in the desktop app's **Settings → Plugins**, or with `claude plugin uninstall claudecut@claudecut` in a terminal), then install promptcut as in [How do I install it?](#how-do-i-install-it), and sign in to CapCut again with `/mcp`.
 
 ### Is it free?
 
@@ -53,11 +53,12 @@ Installing the plugin sets up all skills, the CapCut server connection and the h
 
 ### How do I install it?
 
-In a terminal, run `claude plugin install promptcut --marketplace dsbabbar/promptcut`. Then run `claude`, type `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, promptcut is available in every new local session, in the terminal and in the desktop app's **Code** tab with **Local → This computer**, so just ask for what you want.
+Install it once, from either app:
 
-Already in a Claude Code session in the terminal? Type `/plugin install promptcut --marketplace dsbabbar/promptcut` and choose **Install for you (user scope)**.
+- **Claude desktop app:** type `/plugin` in a Code session (or open **Settings → Plugins**), click **+ Add → Add marketplace → Add from a repository**, enter `dsbabbar/promptcut` and click **Sync**. Then on **Discover**, open the arrow next to **Add** on **Promptcut** and choose **Install for me**.
+- **Terminal:** run `claude plugin install promptcut --marketplace dsbabbar/promptcut`. Inside a terminal session, type `/plugin install promptcut --marketplace dsbabbar/promptcut` and choose **Install for you (user scope)**.
 
-In the desktop app, `/plugin` opens your claude.ai account's **Settings → Plugins** page instead of Claude Code's installer. promptcut isn't listed there, so install from a terminal.
+Then, in a local session, type `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. Both apps share the install, so promptcut is available in every new local session, in the terminal and in the desktop app's **Code** tab with **Local → This computer**.
 
 ### Can I use it on claude.ai or in a cloud session?
 
@@ -69,7 +70,7 @@ Yes, by remote-controlling Claude Code on your computer. In the Claude desktop a
 
 ### How do I update or remove it?
 
-In a terminal, run `claude plugin update promptcut@promptcut` to update, or `claude plugin uninstall promptcut@promptcut` to remove it.
+In the desktop app, open **Settings → Plugins**, then the **⋯** menu next to promptcut. In a terminal, run `claude plugin update promptcut@promptcut` to update, or `claude plugin uninstall promptcut@promptcut` to remove it.
 
 ## Signing in
 
