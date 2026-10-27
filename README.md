@@ -54,6 +54,22 @@ Not sure whether claudecut or editing CapCut's local project files fits your pro
 
 **Saving results:** result links are temporary. Ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory. CapCut may add an "AI" watermark to generated media.
 
+## Use it from your phone
+
+claudecut runs in Claude Code on your computer, but you can drive that session from the Claude mobile app with Remote Control:
+
+1. On your computer, with claudecut installed and signed in to CapCut, open a terminal in your working folder and run `claude remote-control`. Local sessions in the Claude desktop app also work.
+2. On your phone, open the Claude app, go to **Code**, and pick that session.
+
+Everything you ask from the phone runs on the computer. Keep in mind:
+
+- The computer must stay on and awake, with the session running.
+- Media must be on the computer. Sync new phone clips there first (for example with a cloud photo or drive app), then give Claude the computer's file path.
+- Sign in to CapCut on the computer. The login cannot be completed from the phone.
+- Result links open on the phone. Files you ask Claude to save land on the computer.
+
+A regular claude.ai chat or a cloud session cannot use claudecut, because CapCut's login only accepts a local callback address.
+
 ## Known limitations
 
 - **Claude Code only.** CapCut's login accepts local callback addresses only, so the claude.ai website and cloud sessions cannot connect. CapCut's interactive cards are not shown; claudecut asks questions and shows results in the chat instead.
