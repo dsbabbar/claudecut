@@ -41,7 +41,7 @@ You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optiona
 
 ### Does installing the plugin install everything?
 
-`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, so Node.js and the optional ffmpeg must be installed separately. Claude checks for them the first time it needs them and gives you the install command for your system. You can also ask "Check my claudecut setup" at any time.
+`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, claudecut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my claudecut setup" at any time, and set `CLAUDECUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
 
 ### How do I install it?
 

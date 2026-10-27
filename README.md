@@ -22,7 +22,7 @@ All AI generation, search and editing run on CapCut's servers under **your own C
 - [Node.js](https://nodejs.org) 20 or later for uploads, draft editing, subtitle export and saving results (Windows: `winget install OpenJS.NodeJS.LTS`, macOS: `brew install node`)
 - Optional: [ffmpeg](https://ffmpeg.org), for portrait phone videos and mixed-language captions (Windows: `winget install Gyan.FFmpeg`, macOS: `brew install ffmpeg`)
 
-claudecut's scripts have no other dependencies. Claude checks for Node.js and ffmpeg the first time it needs them and tells you how to install anything missing.
+claudecut's scripts have no other dependencies. Plugins can't install software, so when a chat starts claudecut checks for Node.js and ffmpeg. If something is missing, Claude tells you and offers to install it for you (with your approval) or to show you the steps. To stop reminders about the optional ffmpeg, set the environment variable `CLAUDECUT_SKIP_FFMPEG_CHECK=1`.
 
 ## Install
 

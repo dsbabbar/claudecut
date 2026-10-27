@@ -18,12 +18,12 @@ Tools appear in Claude Code as `mcp__plugin_claudecut_capcut__<tool>` and `mcp__
 
 claudecut's helper scripts need **Node.js 20 or later**. Uploads, draft editing, subtitle files and saving results all use it; searches and generation do not. **ffmpeg** (which includes ffprobe) is optional: it is used to detect portrait phone videos and to recover missed captions in mixed-language videos.
 
-Run this check once per conversation, the first time a workflow needs a script or ffmpeg, or when the user asks to set claudecut up:
+claudecut's plugin hook checks for both when a session starts and adds a note to the conversation only when something is missing. Otherwise, run this check once per conversation, the first time a workflow needs a script or ffmpeg, or when the user asks to set claudecut up:
 
 1. Run `node --version`. It must print `v20` or higher.
 2. Only when ffmpeg would help the current request, run `ffprobe -version`.
 
-If something is missing or too old, do not try to work around it. Tell the user what it is needed for and give the install command for their system, then wait for them to install it and restart Claude Code:
+If something is missing or too old, tell the user what it is needed for and offer two choices: you install it for them, or you show them the steps. Wait for their answer.
 
 | System | Node.js | ffmpeg |
 | --- | --- | --- |
@@ -31,7 +31,11 @@ If something is missing or too old, do not try to work around it. Tell the user 
 | macOS (Homebrew) | `brew install node` | `brew install ffmpeg` |
 | Linux | The current LTS from https://nodejs.org or your distribution's `nodejs` package, if it is version 20 or later | `sudo apt install ffmpeg` or your distribution's equivalent |
 
-Do not install software yourself unless the user asks you to. When ffmpeg is missing, continue the request without the steps that need it and say which steps were skipped.
+- **If the user wants you to install it:** run the command for their system (Claude Code asks them to approve it). If the package manager itself is missing (for example Homebrew on a Mac), say so and link its install page instead of installing it yourself. After installing, tell them to restart Claude Code so the new program is found, then check the version again in the new session.
+- **If the user wants the steps:** give the command for their system, explain where to run it (a new terminal window) and that they need to restart Claude Code afterwards.
+- **If the user declines:** for Node.js, explain which features won't work. For ffmpeg, continue without the steps that need it, and mention they can set the environment variable `CLAUDECUT_SKIP_FFMPEG_CHECK=1` to stop the reminder.
+
+Never install software without the user's agreement.
 
 ## Check the connection
 
