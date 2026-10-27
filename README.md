@@ -32,13 +32,19 @@ claudecut's scripts have no other dependencies. Plugins can't install software, 
 
 ## Install
 
-In Claude Code:
+1. **Open a local Claude Code session on your own computer.**
+   - **Claude desktop app (Windows or Mac):** go to **Code**, and in the environment picker choose **Local → This computer**. Don't choose a **Cloud** environment: CapCut's login can't finish there.
+   - **Terminal:** run `claude` in the folder where you'll work.
+2. **Install the plugin** by typing in that session:
 
-```
-/plugin install claudecut --marketplace dsbabbar/claudecut
-```
+   ```
+   /plugin install claudecut --marketplace dsbabbar/claudecut
+   ```
 
-Then run `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
+3. **Sign in to CapCut:** run `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
+4. **Start a new session**, also on **This computer**, and ask for what you want.
+
+Always use claudecut in a local session. Cloud sessions and the claude.ai website can't connect to CapCut.
 
 Uploading local files uses CapCut's `capcut_asset_upload_credential` tool, which issues short-lived upload credentials. Claude Code asks before running it. Approve it when asked, or allow it permanently with `/permissions`.
 

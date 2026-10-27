@@ -49,11 +49,11 @@ You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optiona
 
 ### How do I install it?
 
-In Claude Code, run `/plugin install claudecut --marketplace dsbabbar/claudecut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, claudecut is available in every new chat, so just ask for what you want.
+Open a local Claude Code session (in the desktop app, **Code** with **Local → This computer**; or `claude` in a terminal). Then run `/plugin install claudecut --marketplace dsbabbar/claudecut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, claudecut is available in every new chat, so just ask for what you want.
 
 ### Can I use it on claude.ai or in a cloud session?
 
-No. CapCut's login only accepts a callback address on your own computer, so it has to run in Claude Code on your machine: in a terminal or in a local session of the Claude desktop app.
+No. CapCut's login only accepts a callback address on your own computer, so it has to run in Claude Code on your machine: in a terminal, or in the Claude desktop app's **Code** tab with the environment set to **Local → This computer**. Cloud environments, Chat and Cowork don't work.
 
 ### Can I use it from my phone?
 
