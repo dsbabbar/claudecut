@@ -1,22 +1,26 @@
 # Frequently asked questions
 
-## About claudecut
+## About promptcut
 
-### Is claudecut an official CapCut product?
+### Is promptcut an official CapCut product?
 
-No. claudecut is an independent, community-built plugin. It is not affiliated with, endorsed by or supported by CapCut or ByteDance. CapCut is a trademark of its owner and is named only to describe what claudecut connects to.
+No. promptcut is an independent, community-built plugin. It is not affiliated with, endorsed by or supported by CapCut or ByteDance. CapCut is a trademark of its owner and is named only to describe what promptcut connects to.
 
 ### How is it different from the official CapCut x Codex plugin?
 
 Both connect an AI assistant to CapCut's hosted MCP server, so the CapCut features underneath are the same. The differences:
 
-- claudecut runs in **Claude Code**. The official plugin runs in OpenAI Codex.
-- All of claudecut's skills and scripts are original. None of the official plugin's files are used.
-- CapCut's interactive cards don't display in Claude Code, so claudecut asks questions and shows results in the chat instead, including credit quotes.
+- promptcut runs in **Claude Code**. The official plugin runs in OpenAI Codex.
+- All of promptcut's skills and scripts are original. None of the official plugin's files are used.
+- CapCut's interactive cards don't display in Claude Code, so promptcut asks questions and shows results in the chat instead, including credit quotes.
 
-### Is claudecut a plugin, a skill or an MCP server?
+### Is promptcut a plugin, a skill or an MCP server?
 
-A **plugin**. It bundles 8 skills, 4 helper scripts, a setup hook and the addresses of CapCut's MCP servers. The MCP servers belong to CapCut and run on CapCut's servers; claudecut doesn't include its own. See [What's inside claudecut](whats-inside.md).
+A **plugin**. It bundles 8 skills, 4 helper scripts, a setup hook and the addresses of CapCut's MCP servers. The MCP servers belong to CapCut and run on CapCut's servers; promptcut doesn't include its own. See [What's inside promptcut](whats-inside.md).
+
+### Was promptcut called claudecut?
+
+Yes. It was renamed so its name doesn't use another company's brand. If you installed `claudecut`, uninstall it with `/plugin`, then install `promptcut` with `/plugin install promptcut --marketplace dsbabbar/promptcut`, and sign in to CapCut again with `/mcp`.
 
 ### Is it free?
 
@@ -27,9 +31,9 @@ The plugin is free and open source under the MIT license. You need:
 
 Some CapCut features spend CapCut credits or need a CapCut subscription (see [Credits and cost](#credits-and-cost)).
 
-### Does claudecut see my password or collect data?
+### Does promptcut see my password or collect data?
 
-No. You sign in on CapCut's own login page, and Claude Code stores the login token on your computer. claudecut has no server and collects nothing. Your prompts and media go to CapCut under CapCut's [Privacy Policy](https://www.capcut.com/clause/privacy).
+No. You sign in on CapCut's own login page, and Claude Code stores the login token on your computer. promptcut has no server and collects nothing. Your prompts and media go to CapCut under CapCut's [Privacy Policy](https://www.capcut.com/clause/privacy).
 
 ## Setup
 
@@ -41,15 +45,15 @@ No. You sign in on CapCut's own login page, and Claude Code stores the login tok
 | macOS | Automated tests pass; not yet tested end to end |
 | Linux | Automated tests pass; not yet tested end to end |
 
-You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optional: claudecut uses it to detect portrait phone videos and for captions on mixed-language videos.
+You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optional: promptcut uses it to detect portrait phone videos and for captions on mixed-language videos.
 
 ### Does installing the plugin install everything?
 
-`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, claudecut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my claudecut setup" at any time, and set `CLAUDECUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
+`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, promptcut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my promptcut setup" at any time, and set `PROMPTCUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
 
 ### How do I install it?
 
-Open a local Claude Code session (in the desktop app, **Code** with **Local → This computer**; or `claude` in a terminal). Then run `/plugin install claudecut --marketplace dsbabbar/claudecut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, claudecut is available in every new chat, so just ask for what you want.
+Open a local Claude Code session (in the desktop app, **Code** with **Local → This computer**; or `claude` in a terminal). Then run `/plugin install promptcut --marketplace dsbabbar/promptcut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, promptcut is available in every new chat, so just ask for what you want.
 
 ### Can I use it on claude.ai or in a cloud session?
 
@@ -61,7 +65,7 @@ Yes, by remote-controlling Claude Code on your computer. In the Claude desktop a
 
 ### How do I update or remove it?
 
-Run `/plugin` in Claude Code and choose to update or uninstall claudecut.
+Run `/plugin` in Claude Code and choose to update or uninstall promptcut.
 
 ## Signing in
 
@@ -79,7 +83,7 @@ You also added CapCut's servers by hand. Remove the manual copies with `claude m
 
 ### Why does Claude Code ask permission before uploading?
 
-Uploading uses CapCut's `capcut_asset_upload_credential` tool, which issues short-lived upload keys, so Claude Code checks with you first. Approve it when asked, or allow it permanently with `/permissions`. claudecut keeps the keys inside its upload script and never prints them.
+Uploading uses CapCut's `capcut_asset_upload_credential` tool, which issues short-lived upload keys, so Claude Code checks with you first. Approve it when asked, or allow it permanently with `/permissions`. promptcut keeps the keys inside its upload script and never prints them.
 
 ## Credits and cost
 
@@ -89,13 +93,13 @@ Uploading uses CapCut's `capcut_asset_upload_credential` tool, which issues shor
 | --- | --- |
 | Template search, material search, uploads, saving files, draft editing, subtitle export | Image and video generation, AI rough cuts, and possibly captions depending on your plan |
 
-### Will claudecut spend credits without asking?
+### Will promptcut spend credits without asking?
 
-Not for image or video generation. claudecut shows CapCut's exact quote and waits for your yes, and it never resubmits a request, so you aren't charged twice. If a generation fails, CapCut normally refunds it. **AI rough cuts are the exception:** CapCut doesn't provide a quote before they start.
+Not for image or video generation. promptcut shows CapCut's exact quote and waits for your yes, and it never resubmits a request, so you aren't charged twice. If a generation fails, CapCut normally refunds it. **AI rough cuts are the exception:** CapCut doesn't provide a quote before they start.
 
 ### Why do generated images have an "AI" label?
 
-CapCut adds an "AI" watermark to some generated media. claudecut does not remove it.
+CapCut adds an "AI" watermark to some generated media. promptcut does not remove it.
 
 ## Editing
 
@@ -107,13 +111,13 @@ To a CapCut **cloud draft**. You get a link to the CapCut web editor, and the sa
 
 Yes. Your own edits always win. If you save in the web editor or the desktop app while Claude is working, Claude's save is rejected, and it re-applies its change on top of your newer version. Having the draft open in the desktop app can save new versions on its own, which is normal.
 
-### What can claudecut change in a draft?
+### What can promptcut change in a draft?
 
 Text, captions, music, sound effects and main-track video clips, including volume, fades, moving, trimming and removing. Filters, transitions, video effects, text templates, stickers and picture-in-picture aren't supported yet. Add those in the CapCut editor.
 
 ### Why does my text wrap differently in the web editor and the desktop app?
 
-Each app substitutes its own default font when text has none, and the fonts have different widths. claudecut sets a CapCut library font on text it adds so both apps match. If the desktop app has saved a local font into the draft, ask Claude to set a library font again.
+Each app substitutes its own default font when text has none, and the fonts have different widths. promptcut sets a CapCut library font on text it adds so both apps match. If the desktop app has saved a local font into the draft, ask Claude to set a library font again.
 
 ### Why does an emoji look grey or plain?
 
@@ -127,11 +131,11 @@ Each chat starts fresh and doesn't remember earlier uploads or drafts. Give full
 
 ### Captions missed part of my video. Why?
 
-CapCut transcribes mainly one language per pass. In mixed-language videos it can skip the second language, especially short phrases. claudecut tries each language and, when ffmpeg is available, re-checks the untranscribed parts on their own. If speech still has no captions, claudecut tells you which time ranges are missing. It never fills gaps with its own translation unless you ask for one, and it labels any translation as such.
+CapCut transcribes mainly one language per pass. In mixed-language videos it can skip the second language, especially short phrases. promptcut tries each language and, when ffmpeg is available, re-checks the untranscribed parts on their own. If speech still has no captions, promptcut tells you which time ranges are missing. It never fills gaps with its own translation unless you ask for one, and it labels any translation as such.
 
 ### Can I get subtitle files?
 
-Yes. Ask for SRT or WebVTT, and claudecut saves one file per language, plus a combined file for mixed-language videos.
+Yes. Ask for SRT or WebVTT, and promptcut saves one file per language, plus a combined file for mixed-language videos.
 
 ## Media
 
@@ -141,7 +145,7 @@ Videos and audio up to 1 GiB, and images up to 20 MiB, in common formats (mp4, m
 
 ### My phone video comes out sideways or the wrong shape
 
-Phone videos are often stored landscape with a rotation flag. claudecut checks the flag with ffmpeg when it's installed. If the shape still looks wrong, tell Claude the video is portrait.
+Phone videos are often stored landscape with a rotation flag. promptcut checks the flag with ffmpeg when it's installed. If the shape still looks wrong, tell Claude the video is portrait.
 
 ### Where are my generated files?
 
@@ -149,12 +153,12 @@ Result links from CapCut are temporary. Ask Claude to save results, and they're 
 
 ## Choosing an approach
 
-### Should I use claudecut or let Claude edit CapCut's local project files?
+### Should I use promptcut or let Claude edit CapCut's local project files?
 
-claudecut is best for CapCut's AI features, safe cloud drafts and working from any device. Editing local project files gives finer control (word-level cuts, keyframes, color, your own sound effect library) but needs CapCut closed while Claude writes and depends on an undocumented format. See [Choosing a workflow](choosing-a-workflow.md).
+promptcut is best for CapCut's AI features, safe cloud drafts and working from any device. Editing local project files gives finer control (word-level cuts, keyframes, color, your own sound effect library) but needs CapCut closed while Claude writes and depends on an undocumented format. See [Choosing a workflow](choosing-a-workflow.md).
 
 ## Help
 
 ### Something isn't working. Where do I report it?
 
-Open an issue at [github.com/dsbabbar/claudecut/issues](https://github.com/dsbabbar/claudecut/issues). Include what you asked, what Claude printed and the error text. Never include passwords, tokens, cookies or upload tickets.
+Open an issue at [github.com/dsbabbar/promptcut/issues](https://github.com/dsbabbar/promptcut/issues). Include what you asked, what Claude printed and the error text. Never include passwords, tokens, cookies or upload tickets.

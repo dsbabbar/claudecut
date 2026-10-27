@@ -11,7 +11,7 @@ import {
 const TICKET = 'AbCdEfGhIjKlMnOpQrStUw'
 
 function tempFiles(entries) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'claudecut-upload-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'promptcut-upload-'))
   return Object.entries(entries).map(([name, content]) => {
     const file = path.join(dir, name)
     fs.writeFileSync(file, content)

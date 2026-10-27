@@ -1,6 +1,6 @@
 # Public release checklist
 
-Work through this before announcing claudecut publicly. Delete this file in the final release commit.
+Work through this before announcing promptcut publicly. Delete this file in the final release commit.
 
 ## Files and folders to remove before release
 
@@ -24,5 +24,5 @@ Work through this before announcing claudecut publicly. Delete this file in the 
 - [x] Original square icon added (512 to 2048 px PNG at `.claude-plugin/icon.png`)
 - [x] `privacyPolicyUrl` set in `plugin.json`
 - [x] Each README feature marked "Ready to test" tested end to end and updated to "Available"
-- [ ] Fresh install tested on Windows and macOS with `/plugin install claudecut --marketplace dsbabbar/claudecut`
+- [ ] Fresh install tested on Windows and macOS with `/plugin install promptcut --marketplace dsbabbar/promptcut`
 - [x] Git history checked with `git log -p` for anything in the rules above

@@ -11,7 +11,7 @@ const skip = process.platform === 'win32' && 'uses POSIX symlinks for a fake PAT
 
 // Builds a PATH holding only the tools the script needs, plus optional fake node/ffprobe.
 function fakePath({ node, ffprobe }) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'claudecut-path-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'promptcut-path-'))
   for (const tool of ['sh', 'sed', 'printf']) {
     const real = execFileSync('sh', ['-c', `command -v ${tool}`]).toString().trim()
     if (real.startsWith('/')) fs.symlinkSync(real, path.join(dir, tool))
@@ -33,12 +33,12 @@ test('reports a missing or old Node.js as required', { skip }, () => {
   const none = run({ PATH: fakePath({ ffprobe: true }) })
   assert.match(none, /Required: Node\.js is not installed/)
   assert.doesNotMatch(none, /Optional/)
-  assert.match(run({ PATH: fakePath({ node: 'v18.19.0', ffprobe: true }) }), /v18\.19\.0, but claudecut needs version 20/)
+  assert.match(run({ PATH: fakePath({ node: 'v18.19.0', ffprobe: true }) }), /v18\.19\.0, but promptcut needs version 20/)
 })
 
 test('reports missing ffmpeg as optional unless silenced', { skip }, () => {
   const out = run({ PATH: fakePath({ node: 'v20.0.0' }) })
   assert.match(out, /Optional: ffmpeg/)
   assert.doesNotMatch(out, /Required/)
-  assert.equal(run({ PATH: fakePath({ node: 'v20.0.0' }), CLAUDECUT_SKIP_FFMPEG_CHECK: '1' }), '')
+  assert.equal(run({ PATH: fakePath({ node: 'v20.0.0' }), PROMPTCUT_SKIP_FFMPEG_CHECK: '1' }), '')
 })

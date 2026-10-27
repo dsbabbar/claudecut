@@ -108,7 +108,7 @@ test('summary lists segments by layer and time', () => {
 })
 
 test('CLI applies operations, keeps UTF-8 and refuses to write invalid results', () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'claudecut-draft-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'promptcut-draft-'))
   const input = path.join(dir, 'draft.json')
   const ops = path.join(dir, 'ops.json')
   const out = path.join(dir, 'out.json')
