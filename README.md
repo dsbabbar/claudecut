@@ -23,7 +23,7 @@ All AI generation, search and editing run on CapCut's servers under **your own C
 
 ## Requirements
 
-- [Claude Code](https://code.claude.com) 2.1.275 or later, running on your own computer (the CapCut login sends you back to a local address, so cloud and browser-only sessions cannot complete it)
+- [Claude Code](https://code.claude.com) 2.1.292 or later, running on your own computer (the CapCut login sends you back to a local address, so cloud and browser-only sessions cannot complete it)
 - A CapCut account. Your account region must match your internet connection's region (a US connection needs a US-registered account).
 - [Node.js](https://nodejs.org) 20 or later for uploads, draft editing, subtitle export and saving results (Windows: `winget install OpenJS.NodeJS.LTS`, macOS: `brew install node`)
 - Optional: [ffmpeg](https://ffmpeg.org), for portrait phone videos and mixed-language captions (Windows: `winget install Gyan.FFmpeg`, macOS: `brew install ffmpeg`)
@@ -32,17 +32,19 @@ promptcut's scripts have no other dependencies. Plugins can't install software, 
 
 ## Install
 
-1. **Open a local Claude Code session on your own computer.**
-   - **Claude desktop app (Windows or Mac):** go to **Code**, and in the environment picker choose **Local → This computer**. Don't choose a **Cloud** environment: CapCut's login can't finish there.
+1. **Install the plugin** from a terminal (PowerShell or Command Prompt on Windows, Terminal on macOS):
+
+   ```
+   claude plugin install promptcut --marketplace dsbabbar/promptcut
+   ```
+
+   This needs the `claude` command. If your terminal doesn't recognize it, [install Claude Code](https://code.claude.com) first. The terminal and the Claude desktop app's local sessions share the same plugins, so this one install covers both.
+2. **Sign in to CapCut:** run `claude`, then type `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
+3. **Start a new session** and ask for what you want:
    - **Terminal:** run `claude` in the folder where you'll work.
-2. **Install the plugin** by typing in that session:
+   - **Claude desktop app (Windows or Mac):** go to **Code**, and in the environment picker choose **Local → This computer**. Don't choose a **Cloud** environment: CapCut's login can't finish there.
 
-   ```
-   /plugin install promptcut --marketplace dsbabbar/promptcut
-   ```
-
-3. **Sign in to CapCut:** run `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
-4. **Start a new session**, also on **This computer**, and ask for what you want.
+Don't install promptcut from the desktop app's **Settings → Plugins** page, which is where `/plugin` takes you in the desktop app. That page adds plugins to your claude.ai account, and promptcut isn't listed there. Already inside a terminal session? `/plugin install promptcut --marketplace dsbabbar/promptcut` works there too.
 
 Always use promptcut in a local session. Cloud sessions and the claude.ai website can't connect to CapCut.
 
@@ -122,7 +124,7 @@ Start Claude Code with your local copy loaded as the plugin:
 claude --plugin-dir /path/to/promptcut
 ```
 
-Then sign in with `/mcp` and try requests as a user would. If you also installed promptcut from the marketplace, uninstall it first (`/plugin`) so the skills and CapCut tools aren't loaded twice. Start a new session after editing a skill so Claude reads the new version.
+Then sign in with `/mcp` and try requests as a user would. If you also installed promptcut from the marketplace, uninstall it first (`claude plugin uninstall promptcut@promptcut`) so the skills and CapCut tools aren't loaded twice. Start a new session after editing a skill so Claude reads the new version.
 
 ### Project layout
 

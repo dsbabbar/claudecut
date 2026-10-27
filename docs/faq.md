@@ -20,7 +20,7 @@ A **plugin**. It bundles 8 skills, 4 helper scripts, a setup hook and the addres
 
 ### Was promptcut called claudecut?
 
-Yes. It was renamed so its name doesn't use another company's brand. If you installed `claudecut`, uninstall it with `/plugin`, then install `promptcut` with `/plugin install promptcut --marketplace dsbabbar/promptcut`, and sign in to CapCut again with `/mcp`.
+Yes. It was renamed so its name doesn't use another company's brand. If you installed `claudecut`, run `claude plugin uninstall claudecut@claudecut` in a terminal, then install promptcut as in [How do I install it?](#how-do-i-install-it), and sign in to CapCut again with `/mcp`.
 
 ### Is it free?
 
@@ -45,15 +45,17 @@ No. You sign in on CapCut's own login page, and Claude Code stores the login tok
 | macOS | Automated tests pass; not yet tested end to end |
 | Linux | Automated tests pass; not yet tested end to end |
 
-You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optional: promptcut uses it to detect portrait phone videos and for captions on mixed-language videos.
+You need Claude Code 2.1.292 or later and Node.js 20 or later. ffmpeg is optional: promptcut uses it to detect portrait phone videos and for captions on mixed-language videos.
 
 ### Does installing the plugin install everything?
 
-`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, promptcut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my promptcut setup" at any time, and set `PROMPTCUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
+Installing the plugin sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, promptcut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my promptcut setup" at any time, and set `PROMPTCUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
 
 ### How do I install it?
 
-Open a local Claude Code session (in the desktop app, **Code** with **Local → This computer**; or `claude` in a terminal). Then run `/plugin install promptcut --marketplace dsbabbar/promptcut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, promptcut is available in every new chat, so just ask for what you want.
+In a terminal, run `claude plugin install promptcut --marketplace dsbabbar/promptcut`. Then run `claude`, type `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, promptcut is available in every new local session, in the terminal and in the desktop app's **Code** tab with **Local → This computer**, so just ask for what you want.
+
+In the desktop app, `/plugin` opens your claude.ai account's **Settings → Plugins** page instead of Claude Code's installer. promptcut isn't listed there, so install from a terminal.
 
 ### Can I use it on claude.ai or in a cloud session?
 
@@ -65,7 +67,7 @@ Yes, by remote-controlling Claude Code on your computer. In the Claude desktop a
 
 ### How do I update or remove it?
 
-Run `/plugin` in Claude Code and choose to update or uninstall promptcut.
+In a terminal, run `claude plugin update promptcut@promptcut` to update, or `claude plugin uninstall promptcut@promptcut` to remove it.
 
 ## Signing in
 
