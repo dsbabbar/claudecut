@@ -56,10 +56,14 @@ Not sure whether claudecut or editing CapCut's local project files fits your pro
 
 ## Use it from your phone
 
-claudecut runs in Claude Code on your computer, but you can drive that session from the Claude mobile app with Remote Control:
+claudecut runs in Claude Code on your computer, but you can drive that session from the Claude mobile app with Remote Control. First install claudecut and sign in to CapCut on the computer, then start Remote Control in whichever app you use there:
 
-1. On your computer, with claudecut installed and signed in to CapCut, open a terminal in your working folder and run `claude remote-control`. Local sessions in the Claude desktop app also work.
-2. On your phone, open the Claude app, go to **Code**, and pick that session.
+| On your computer | How to start Remote Control |
+| --- | --- |
+| Claude desktop app (Windows or Mac) | In a local Claude Code session, type `/rc` |
+| Claude Code in a terminal (Windows, Mac or Linux) | In a running session, type `/rc`, or start a new one with `claude remote-control` in your working folder |
+
+Then, on your phone, open the Claude app, go to **Code**, and pick that session.
 
 Everything you ask from the phone runs on the computer. Keep in mind:
 
