@@ -5,6 +5,8 @@ description: Upload local video, audio and image files to CapCut so other CapCut
 
 # Upload media to CapCut
 
+Before running any `${CLAUDE_PLUGIN_ROOT}/scripts/` command or ffmpeg, make sure the `capcut-connect` skill's setup check has passed in this conversation.
+
 Uploads return a `vid` for each video or audio file and an ImageX `uri` for each image. Other CapCut skills use these IDs. Upload every file for a request in one batch.
 
 Supported: videos up to 1 GiB (mp4, mov, m4v, mkv, webm, avi, mpeg, mpg, 3gp, ts, mts, m2ts, flv), audio up to 1 GiB (mp3, wav, m4a, aac, flac, ogg, opus, wma, aiff), images up to 20 MiB (jpg, jpeg, png, webp, gif, bmp, tif, tiff, heic, heif, avif). Each file name in a batch must be unique.

@@ -5,6 +5,8 @@ description: Transcribe speech in a video or audio file and produce captions or 
 
 # Automatic captions with CapCut
 
+Before running any `${CLAUDE_PLUGIN_ROOT}/scripts/` command or ffmpeg, make sure the `capcut-connect` skill's setup check has passed in this conversation.
+
 Caption-only requests keep the original video unchanged. Never start an AI rough cut to add captions.
 
 ## Inputs

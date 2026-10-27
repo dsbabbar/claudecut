@@ -5,6 +5,8 @@ description: Add, change or remove captions, text, music and video clips in a Ca
 
 # Edit CapCut drafts
 
+Before running any `${CLAUDE_PLUGIN_ROOT}/scripts/` command or ffmpeg, make sure the `capcut-connect` skill's setup check has passed in this conversation.
+
 A CapCut draft is a cloud project that the user can also open in the CapCut web editor. Claude edits it as an STDraft JSON document: download it, change it locally with `scripts/stdraft.mjs`, then save it back. CapCut validates every save.
 
 The user's own edits always win. Drafts also sync to the CapCut desktop app, and if the user saves in the web editor or the desktop app while you are editing, your save is rejected with a version conflict, by design. Simply having the draft open in the desktop app can save new versions.
