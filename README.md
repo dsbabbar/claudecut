@@ -59,7 +59,7 @@ Questions? See the [FAQ](docs/faq.md). Not sure whether claudecut or editing Cap
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Available |
 | Draft editing | "Add the music and captions to my draft" | Available (drafts also open in the CapCut desktop app) |
 
-**Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
+**CapCut Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
 
 **Saving results:** result links are temporary. Ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory. CapCut may add an "AI" watermark to generated media.
 
