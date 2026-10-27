@@ -55,6 +55,8 @@ Installing the plugin sets up all skills, the CapCut server connection and the h
 
 In a terminal, run `claude plugin install promptcut --marketplace dsbabbar/promptcut`. Then run `claude`, type `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, promptcut is available in every new local session, in the terminal and in the desktop app's **Code** tab with **Local → This computer**, so just ask for what you want.
 
+Already in a Claude Code session in the terminal? Type `/plugin install promptcut --marketplace dsbabbar/promptcut` and choose **Install for you (user scope)**.
+
 In the desktop app, `/plugin` opens your claude.ai account's **Settings → Plugins** page instead of Claude Code's installer. promptcut isn't listed there, so install from a terminal.
 
 ### Can I use it on claude.ai or in a cloud session?

@@ -39,12 +39,14 @@ promptcut's scripts have no other dependencies. Plugins can't install software, 
    ```
 
    This needs the `claude` command. If your terminal doesn't recognize it, [install Claude Code](https://code.claude.com) first. The terminal and the Claude desktop app's local sessions share the same plugins, so this one install covers both.
+
+   **Already in a Claude Code session in the terminal?** Type `/plugin install promptcut --marketplace dsbabbar/promptcut` instead. Confirm adding the marketplace if asked. On the plugin details screen, choose **Install for you (user scope)** so promptcut works in every folder and in the desktop app. "Components will be discovered at installation" is normal. If asked, run `/reload-plugins`.
 2. **Sign in to CapCut:** run `claude`, then type `/mcp`, select **capcut**, and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
 3. **Start a new session** and ask for what you want:
    - **Terminal:** run `claude` in the folder where you'll work.
    - **Claude desktop app (Windows or Mac):** go to **Code**, and in the environment picker choose **Local → This computer**. Don't choose a **Cloud** environment: CapCut's login can't finish there.
 
-Don't install promptcut from the desktop app's **Settings → Plugins** page, which is where `/plugin` takes you in the desktop app. That page adds plugins to your claude.ai account, and promptcut isn't listed there. Already inside a terminal session? `/plugin install promptcut --marketplace dsbabbar/promptcut` works there too.
+Don't install promptcut from the desktop app's **Settings → Plugins** page, which is where `/plugin` takes you in the desktop app. That page adds plugins to your claude.ai account, and promptcut isn't listed there.
 
 Always use promptcut in a local session. Cloud sessions and the claude.ai website can't connect to CapCut.
 
