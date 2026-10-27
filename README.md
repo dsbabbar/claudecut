@@ -46,7 +46,9 @@ promptcut's scripts have no other dependencies. Plugins can't install software, 
    ```
 
    If your terminal doesn't recognize `claude`, [install Claude Code](https://code.claude.com) first. Already in a Claude Code session in the terminal? Type `/plugin install promptcut --marketplace dsbabbar/promptcut` instead, confirm adding the marketplace if asked, and choose **Install for you (user scope)**. "Components will be discovered at installation" is normal. If asked, run `/reload-plugins`.
-2. **Sign in to CapCut:** in a new local session, type `/mcp`, select **capcut** (it may show as `plugin:promptcut:capcut`), and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
+2. **Sign in to CapCut** once. The sign-in is shared by both apps.
+   - **Claude desktop app:** type `/mcp` in a Code session (or open **Settings → Connectors**) and search for **promptcut**, not "capcut". Open **Promptcut**, go to its **Connectors** tab, click **capcut** and connect it. Approve opening www.capcut.com, sign in in your browser, then click **Done**. Then add **capcut-cards**, which needs no sign-in.
+   - **Terminal:** in a `claude` session, type `/mcp`, select **capcut** (it may show as `plugin:promptcut:capcut`), and choose **Authenticate**. Sign in to CapCut in the browser window that opens.
 3. **Start a new session** and ask for what you want:
    - **Terminal:** run `claude` in the folder where you'll work.
    - **Claude desktop app:** go to **Code**, and in the environment picker choose **Local → This computer**. Don't choose a **Cloud** environment: CapCut's login can't finish there.

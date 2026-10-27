@@ -45,9 +45,8 @@ Run a free, read-only call: `search_capcut_material` with `type: "font"`, `promp
 
 Claude cannot complete the login itself. Tell the user to:
 
-1. Run `/mcp` in Claude Code.
-2. Select **capcut** (it may show as `plugin:promptcut:capcut`) and choose **Authenticate**.
-3. Sign in to CapCut in the browser window that opens, then return to Claude Code.
+- **Claude desktop app:** type `/mcp` (it opens **Settings → Connectors**), search for **promptcut**, open its **Connectors** tab, click **capcut** and connect it. Approve opening www.capcut.com, sign in in the browser, then click **Done**. Also add **capcut-cards**, which needs no sign-in. Then start a new session.
+- **Terminal:** run `/mcp`, select **capcut** (it may show as `plugin:promptcut:capcut`) and choose **Authenticate**. Sign in to CapCut in the browser window that opens, then return to Claude Code.
 
 The login only works when Claude Code runs on the user's own computer. CapCut accepts local callback addresses only, so cloud sessions and the claude.ai website cannot finish it.
 
@@ -59,7 +58,7 @@ The login only works when Claude Code runs on the user's own computer. CapCut ac
 | Browser shows "connection refused" on a `localhost` page | The login wait expired or a firewall blocked the local callback. Run **Authenticate** again and allow the local connection if the firewall asks. |
 | HTTP 502 or Bad Gateway with no tool result | CapCut's service is temporarily down. Wait and retry later. Do not log out. |
 | Each CapCut tool is listed twice | The servers were also added by hand. Remove the manual copies with `claude mcp remove capcut` and `claude mcp remove capcut-cards`. |
-| Tools still missing after login | Run `/mcp` and choose **Reconnect** for capcut, or restart Claude Code. |
+| Tools still missing after login | Start a new session. In a terminal, you can also run `/mcp` and choose **Reconnect** for capcut. |
 
 ## Safety
 
