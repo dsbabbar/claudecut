@@ -46,6 +46,6 @@ For a standalone upload request, report each file's result briefly. Do not print
 | `files do not match the ticket` | Run `describe` again and request a new ticket with its exact output. |
 | `public: false` with a `vid` | The upload worked but finalizing did not. Keep the `vid`. Do not upload again. |
 | `Untrusted upload host` | Stop and report it. Do not work around it. |
-| Authentication error | Follow the `capcut-connect` skill. |
+| Login error (for example `check login error`) | Stop and follow the `capcut-connect` skill. Do not retry or try other tools first. |
 
 Never upload through the CapCut website, the desktop app or browser automation instead.

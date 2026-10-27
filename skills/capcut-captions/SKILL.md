@@ -43,4 +43,4 @@ Captions must come from CapCut's recognition. Never fill a missing language with
    - To show the text, print the captions with their timestamps.
    - To burn captions into the video, use the `capcut-draft` skill's `add_captions` operation with the same cues. For a video that has no draft yet, that skill explains how to start one.
 
-If some items fail, report each failed item and keep the successful results. Errors ending in `_unavailable` are temporary problems on CapCut's side: wait about a minute, then retry once with the same `unique_key`. If it fails again, report it and offer to try later. If a membership or purchase prompt is returned, give the user the link and wait.
+If some items fail, report each failed item and keep the successful results. A login error (for example `check login error`) means the CapCut sign-in has expired: stop and follow the `capcut-connect` skill. Errors ending in `_unavailable` are temporary problems on CapCut's side: wait about a minute, then retry once with the same `unique_key`. If it fails again, report it and offer to try later. If a membership or purchase prompt is returned, give the user the link and wait.

@@ -49,7 +49,7 @@ When `succeeded` returns `total` of 0, retry once with a shorter query that keep
 | `query_required` | Retry once with a self-contained query and no assets. If the user explicitly wanted an assets-only search, explain that text is required here. |
 | `template_search_busy` | The account has 5 searches running. Keep polling existing `search_id`s, or wait briefly and submit once more. |
 | Preview says the result expired | Search results are kept for 15 days. Offer a new search. |
-| Authentication error or missing tools | Follow the `capcut-connect` skill. |
+| Login error (for example `check login error`) or missing tools | Stop and follow the `capcut-connect` skill. Do not retry or try other tools first. |
 
 ## Opening a template
 
