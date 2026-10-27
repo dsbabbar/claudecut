@@ -1,0 +1,152 @@
+# Frequently asked questions
+
+## About claudecut
+
+### Is claudecut an official CapCut product?
+
+No. claudecut is an independent, community-built plugin. It is not affiliated with, endorsed by or supported by CapCut or ByteDance. CapCut is a trademark of its owner and is named only to describe what claudecut connects to.
+
+### How is it different from the official CapCut x Codex plugin?
+
+Both connect an AI assistant to CapCut's hosted MCP server, so the CapCut features underneath are the same. The differences:
+
+- claudecut runs in **Claude Code**. The official plugin runs in OpenAI Codex.
+- All of claudecut's skills and scripts are original. None of the official plugin's files are used.
+- CapCut's interactive cards don't display in Claude Code, so claudecut asks questions and shows results in the chat instead, including credit quotes.
+
+### Is it free?
+
+The plugin is free and open source under the MIT license. You need:
+
+- Claude Code, which requires a Claude plan
+- a CapCut account
+
+Some CapCut features spend CapCut credits or need a CapCut subscription (see [Credits and cost](#credits-and-cost)).
+
+### Does claudecut see my password or collect data?
+
+No. You sign in on CapCut's own login page, and Claude Code stores the login token on your computer. claudecut has no server and collects nothing. Your prompts and media go to CapCut under CapCut's [Privacy Policy](https://www.capcut.com/clause/privacy).
+
+## Setup
+
+### Which computers does it work on?
+
+| Platform | Status |
+| --- | --- |
+| Windows | Tested end to end with a real CapCut account |
+| macOS | Automated tests pass; not yet tested end to end |
+| Linux | Automated tests pass; not yet tested end to end |
+
+You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optional: claudecut uses it to detect portrait phone videos and for captions on mixed-language videos.
+
+### How do I install it?
+
+In Claude Code, run `/plugin install claudecut --marketplace dsbabbar/claudecut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, claudecut is available in every new chat, so just ask for what you want.
+
+### Can I use it on claude.ai or in a cloud session?
+
+No. CapCut's login only accepts a callback address on your own computer, so it has to run in Claude Code on your machine: in a terminal or in a local session of the Claude desktop app.
+
+### Can I use it from my phone?
+
+Yes, by remote-controlling Claude Code on your computer. In the Claude desktop app or a terminal session, type `/rc`, then open that session from the Claude mobile app under **Code**. The computer must stay on, and your media must be on the computer. See [Use it from your phone](../README.md#use-it-from-your-phone).
+
+### How do I update or remove it?
+
+Run `/plugin` in Claude Code and choose to update or uninstall claudecut.
+
+## Signing in
+
+### The CapCut login page says "unknown client" or "invalid_request"
+
+This usually means a region mismatch. A US internet connection needs a US-registered CapCut account, and a non-US connection needs a non-US account. Sign out at capcut.com, sign in with a matching account, then run **Authenticate** again.
+
+### The browser shows "connection refused" on a localhost page after signing in
+
+The login wait expired or a firewall blocked the local callback. Run **Authenticate** again, and allow the local connection if your firewall asks.
+
+### Every CapCut tool appears twice
+
+You also added CapCut's servers by hand. Remove the manual copies with `claude mcp remove capcut` and `claude mcp remove capcut-cards`.
+
+### Why does Claude Code ask permission before uploading?
+
+Uploading uses CapCut's `capcut_asset_upload_credential` tool, which issues short-lived upload keys, so Claude Code checks with you first. Approve it when asked, or allow it permanently with `/permissions`. claudecut keeps the keys inside its upload script and never prints them.
+
+## Credits and cost
+
+### Which features cost CapCut credits?
+
+| Free | Can cost credits |
+| --- | --- |
+| Template search, material search, uploads, saving files, draft editing, subtitle export | Image and video generation, AI rough cuts, and possibly captions depending on your plan |
+
+### Will claudecut spend credits without asking?
+
+Not for image or video generation. claudecut shows CapCut's exact quote and waits for your yes, and it never resubmits a request, so you aren't charged twice. If a generation fails, CapCut normally refunds it. **AI rough cuts are the exception:** CapCut doesn't provide a quote before they start.
+
+### Why do generated images have an "AI" label?
+
+CapCut adds an "AI" watermark to some generated media. claudecut does not remove it.
+
+## Editing
+
+### Where do my edits go?
+
+To a CapCut **cloud draft**. You get a link to the CapCut web editor, and the same draft also opens in the CapCut desktop app. Saving a draft doesn't export a video, so export from CapCut when you're happy with it.
+
+### Can I edit in CapCut while Claude is editing?
+
+Yes. Your own edits always win. If you save in the web editor or the desktop app while Claude is working, Claude's save is rejected, and it re-applies its change on top of your newer version. Having the draft open in the desktop app can save new versions on its own, which is normal.
+
+### What can claudecut change in a draft?
+
+Text, captions, music, sound effects and main-track video clips, including volume, fades, moving, trimming and removing. Filters, transitions, video effects, text templates, stickers and picture-in-picture aren't supported yet. Add those in the CapCut editor.
+
+### Why does my text wrap differently in the web editor and the desktop app?
+
+Each app substitutes its own default font when text has none, and the fonts have different widths. claudecut sets a CapCut library font on text it adds so both apps match. If the desktop app has saved a local font into the draft, ask Claude to set a library font again.
+
+### Why does an emoji look grey or plain?
+
+CapCut's editor sometimes renders emoji as monochrome symbols. The character itself is saved correctly.
+
+### Can I continue a draft in a new chat?
+
+Each chat starts fresh and doesn't remember earlier uploads or drafts. Give full file paths, or describe the draft you want to work on.
+
+## Captions
+
+### Captions missed part of my video. Why?
+
+CapCut transcribes mainly one language per pass. In mixed-language videos it can skip the second language, especially short phrases. claudecut tries each language and, when ffmpeg is available, re-checks the untranscribed parts on their own. If speech still has no captions, claudecut tells you which time ranges are missing. It never fills gaps with its own translation unless you ask for one, and it labels any translation as such.
+
+### Can I get subtitle files?
+
+Yes. Ask for SRT or WebVTT, and claudecut saves one file per language, plus a combined file for mixed-language videos.
+
+## Media
+
+### Which files can I upload?
+
+Videos and audio up to 1 GiB, and images up to 20 MiB, in common formats (mp4, mov, mkv, webm, mp3, wav, m4a, jpg, png, webp, heic and more). Give Claude the full path. It asks rather than searching your drives.
+
+### My phone video comes out sideways or the wrong shape
+
+Phone videos are often stored landscape with a rotation flag. claudecut checks the flag with ffmpeg when it's installed. If the shape still looks wrong, tell Claude the video is portrait.
+
+### Where are my generated files?
+
+Result links from CapCut are temporary. Ask Claude to save results, and they're downloaded to a `capcut-output` folder in your current directory.
+
+## Choosing an approach
+
+### Should I use claudecut or let Claude edit CapCut's local project files?
+
+claudecut is best for CapCut's AI features, safe cloud drafts and working from any device. Editing local project files gives finer control (word-level cuts, keyframes, color, your own sound effect library) but needs CapCut closed while Claude writes and depends on an undocumented format. See [Choosing a workflow](choosing-a-workflow.md).
+
+## Help
+
+### Something isn't working. Where do I report it?
+
+Open an issue at [github.com/dsbabbar/claudecut/issues](https://github.com/dsbabbar/claudecut/issues). Include what you asked, what Claude printed and the error text. Never include passwords, tokens, cookies or upload tickets.
