@@ -33,9 +33,10 @@ The server may ignore assets where multimodal search is unavailable, so never cl
 
 When `status` is `succeeded` and `total` is above 0:
 
-1. Call `templates_preview_v2` (on `capcut-cards`) with only the `search_id`.
-2. If its result does not include readable template data in this client, call `capcut_template_search_poll` with the same `search_id` to get the full records.
-3. Present the templates as a numbered list: title, a one-line description of the style or structure, duration or ratio when given, and the template link. Then summarize the useful creative directions in two or three sentences.
+1. Call `capcut_template_search_poll` with the same `search_id` to get the full template records. Do not call `templates_preview` or `templates_preview_v2` (on `capcut-cards`): Claude Code doesn't render their cards, so the user would only see raw data.
+2. Present the templates as a numbered list: title, a one-line description of the style or structure, duration or ratio when given, and the template link. Then summarize the useful creative directions in two or three sentences.
+
+The list in your reply is the only place the user sees the templates. Never say cards, a gallery or previews are shown in the chat.
 
 Only show links whose origin is `https://www.capcut.com`. Never show raw responses, signatures, headers or tokens.
 
