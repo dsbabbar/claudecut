@@ -5,6 +5,8 @@ description: Generate images or short videos with CapCut AI models (Seedream, GP
 
 # Generate images and videos with CapCut
 
+Before running any `${CLAUDE_PLUGIN_ROOT}/scripts/` command or ffmpeg, make sure the `capcut-connect` skill's setup check has passed in this conversation.
+
 Generation can spend the user's CapCut credits. **Never approve a charge on the user's behalf.**
 
 ## Choose the output

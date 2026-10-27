@@ -39,6 +39,10 @@ No. You sign in on CapCut's own login page, and Claude Code stores the login tok
 
 You need Claude Code 2.1.275 or later and Node.js 20 or later. ffmpeg is optional: claudecut uses it to detect portrait phone videos and for captions on mixed-language videos.
 
+### Does installing the plugin install everything?
+
+`/plugin install` sets up all skills, the CapCut server connection and the helper scripts, which have no npm dependencies. It can't install system software, and Claude Code has no install-time hook, so Node.js and the optional ffmpeg are installed separately. When a chat starts, claudecut checks for them. If something is missing, Claude tells you and offers to install it for you (you approve the command) or to show you the steps. Restart Claude Code after installing. You can also ask "Check my claudecut setup" at any time, and set `CLAUDECUT_SKIP_FFMPEG_CHECK=1` to stop reminders about the optional ffmpeg.
+
 ### How do I install it?
 
 In Claude Code, run `/plugin install claudecut --marketplace dsbabbar/claudecut`, then `/mcp`, select **capcut** and choose **Authenticate**. You only do this once. After that, claudecut is available in every new chat, so just ask for what you want.
