@@ -95,13 +95,55 @@ A regular claude.ai chat or a cloud session cannot use claudecut, because CapCut
 
 ## Development
 
+This section is for people who want to change claudecut or contribute to it. You don't need it to use the plugin.
+
+### Get the code and run the checks
+
+You need Git, Node.js 20 or later and Claude Code.
+
 ```
-npm test
-claude plugin validate .
-claude --plugin-dir .
+git clone https://github.com/dsbabbar/claudecut
+cd claudecut
+npm test                     # runs the unit tests; no npm install needed
+claude plugin validate .     # checks the plugin and marketplace files
 ```
 
-Skills live in `skills/`, helper scripts in `scripts/` and tests in `tests/`.
+### Try your changes in Claude Code
+
+Start Claude Code with your local copy loaded as the plugin:
+
+```
+claude --plugin-dir /path/to/claudecut
+```
+
+Then sign in with `/mcp` and try requests as a user would. If you also installed claudecut from the marketplace, uninstall it first (`/plugin`) so the skills and CapCut tools aren't loaded twice. Start a new session after editing a skill so Claude reads the new version.
+
+### Project layout
+
+| Path | Contents |
+| --- | --- |
+| `.claude-plugin/` | Plugin and marketplace manifests, and the icon |
+| `.mcp.json` | Addresses of CapCut's two MCP servers |
+| `skills/<name>/SKILL.md` | One folder per skill. The `description` line decides when Claude uses it, and the body holds the workflow and rules. |
+| `scripts/` | Node.js helpers (upload, draft editing, subtitles, downloads). Built-in modules only, no npm dependencies. |
+| `hooks/` | The session-start setup check |
+| `tests/` | Unit tests for the scripts and the hook, run with `npm test` |
+| `docs/` | The guides linked from this README |
+| `assets/` | Source for the icon |
+
+See [What's inside claudecut](docs/whats-inside.md) for how these pieces work together.
+
+### Guidelines for changes
+
+- **Keep it original.** Don't copy files, text or code from the official CapCut Codex plugin, whose bundle is proprietary.
+- **Use synthetic test data only.** Never commit real CapCut responses, drafts, media, tokens or personal paths.
+- **Keep scripts dependency-free.** Use Node.js built-in modules so users never need `npm install`.
+- **Never let a skill spend credits silently.** Paid actions must show CapCut's quote and wait for the user's approval.
+- **Test against a real CapCut account before marking a feature Available.** Automated tests can't reach CapCut.
+
+### Continuous integration
+
+Every pull request runs `npm test` on Windows, macOS and Linux with Node.js 20 and 22 (see `.github/workflows/test.yml`). Open a pull request against `main`, describe what you tested with a real CapCut account, and keep it green.
 
 ## Acknowledgements
 
