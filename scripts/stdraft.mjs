@@ -285,19 +285,31 @@ export function newDraft(width, height) {
 
 // ------------------------------------------------------------------ summary
 
+// A usable font is a CapCut library font: vimo:// followed by a numeric resource id. The
+// CapCut desktop app can save local font paths, which come back as broken vimo:// links.
+export function fontProblems(draft) {
+  return draft.segments
+    .filter(s => s.type === 'TEXT' && typeof s.attributes?.font === 'string' && !/^vimo:\/\/\d+$/.test(s.attributes.font))
+    .map(s => s.id)
+}
+
 export function summarize(draft) {
   const r = root(draft)
   const fmt = ms => `${(ms / 1000).toFixed(1)}s`
   const lines = [`Canvas ${r.attributes?.width}x${r.attributes?.height}, length ${fmt(draftDuration(draft))}, ${draft.segments.length - 1} segments`]
-  const items = draft.segments.filter(s => s.type !== 'DRAFT')
+  const timed = draft.segments.filter(s => s.type !== 'DRAFT' && s.timeline)
     .sort((x, y) => (x.layout?.layer ?? 0) - (y.layout?.layer ?? 0) || x.timeline['start.ms'] - y.timeline['start.ms'])
-  for (const s of items) {
+  for (const s of timed) {
     const t = s.timeline
     const a = s.attributes ?? {}
-    const what = s.type === 'TEXT' ? `"${a.content}"` : a.source ?? ''
+    const what = s.type === 'TEXT' ? `"${a.content}"${a.font ? ` font ${a.font}` : ''}` : a.source ?? ''
     const range = 'start.ms' in a && 'end.ms' in a ? ` from source ${fmt(a['start.ms'])}-${fmt(a['end.ms'])}` : ''
-    lines.push(`${s.id.padEnd(12)} ${s.type.padEnd(5)} layer ${String(s.layout?.layer).padEnd(4)} ${fmt(t['start.ms'])}-${fmt(t['start.ms'] + t['duration.ms'])}  ${what}${range}`)
+    lines.push(`${s.id.padEnd(12)} ${String(s.type).padEnd(5)} layer ${String(s.layout?.layer).padEnd(4)} ${fmt(t['start.ms'])}-${fmt(t['start.ms'] + t['duration.ms'])}  ${what}${range}`)
   }
+  const other = draft.segments.filter(s => s.type !== 'DRAFT' && !s.timeline)
+  if (other.length) lines.push(`Other segments kept unchanged: ${other.map(s => `${s.id} (${s.type})`).join(', ')}`)
+  const broken = fontProblems(draft)
+  if (broken.length) lines.push(`Warning: text with a font that is not a CapCut library font (may render in a fallback font): ${broken.join(', ')}`)
   return lines.join('\n')
 }
 
