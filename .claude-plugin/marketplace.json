@@ -1,5 +1,5 @@
 {
-  "name": "claudecut",
+  "name": "promptcut",
   "owner": {
     "name": "dsbabbar",
     "url": "https://github.com/dsbabbar"
@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "claudecut",
+      "name": "promptcut",
       "source": "./",
       "description": "Unofficial community plugin that connects Claude Code to CapCut's AI video tools.",
       "category": "creativity"

@@ -1,18 +1,18 @@
-# Choosing a workflow: claudecut or local project mode
+# Choosing a workflow: promptcut or local project mode
 
 There are two ways to have Claude Code edit videos for CapCut:
 
-1. **claudecut (cloud mode):** this plugin. Claude works through CapCut's hosted MCP server, under your CapCut account. Media is uploaded to CapCut, and edits are saved to cloud drafts that open in the CapCut web editor and the CapCut desktop app.
+1. **promptcut (cloud mode):** this plugin. Claude works through CapCut's hosted MCP server, under your CapCut account. Media is uploaded to CapCut, and edits are saved to cloud drafts that open in the CapCut web editor and the CapCut desktop app.
 2. **Local project mode:** no plugin and no CapCut account connection. Claude writes the CapCut desktop app's own project file on your computer, using local tools such as ffmpeg and a speech-to-text model, while CapCut is closed. You then open the project in CapCut.
 
 Both have been used on real projects. This guide explains how each works, what they share, where they differ, and when to pick which.
 
 ## How each one works
 
-### claudecut (cloud mode)
+### promptcut (cloud mode)
 
 ```
-Claude Code ── claudecut skills ── CapCut MCP server (your account)
+Claude Code ── promptcut skills ── CapCut MCP server (your account)
                      │                    ├── AI generation, templates, materials, captions, rough cuts
                      │                    └── cloud drafts ──> web editor and desktop app
                      └── local scripts: upload, draft editor, subtitle export, downloads
@@ -37,7 +37,7 @@ Claude Code ── ffmpeg / ffprobe ──> clip facts, contact sheets, silence,
 3. It writes the project file directly, using structures copied from **your own existing CapCut projects**, so the format matches the CapCut version you have installed.
 4. It checks that every reference resolves and nothing overlaps, renders a rough ffmpeg preview, and you open the project in CapCut to confirm.
 
-CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: under `%LOCALAPPDATA%\CapCut\User Data` on Windows, and under `~/Movies/CapCut/User Data` on macOS by default. claudecut does not include tooling for this mode. It is a pattern you ask Claude Code to follow.
+CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: under `%LOCALAPPDATA%\CapCut\User Data` on Windows, and under `~/Movies/CapCut/User Data` on macOS by default. promptcut does not include tooling for this mode. It is a pattern you ask Claude Code to follow.
 
 ## What both can do
 
@@ -51,7 +51,7 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 
 ## Differences
 
-| | claudecut (cloud mode) | Local project mode |
+| | promptcut (cloud mode) | Local project mode |
 | --- | --- | --- |
 | **Where edits land** | CapCut cloud draft (web editor and desktop app) | CapCut desktop project on one computer |
 | **Setup** | Install the plugin, sign in to CapCut once | CapCut desktop, ffmpeg, Python, optionally a speech-to-text model; at least one existing CapCut project to copy structures from |
@@ -71,7 +71,7 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 
 ## Pros and cons
 
-### claudecut (cloud mode)
+### promptcut (cloud mode)
 
 **Pros**
 - CapCut's AI services: rough cuts, generation, speech recognition, templates, materials
@@ -106,11 +106,11 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 
 | Situation | Best fit |
 | --- | --- |
-| You have rough footage and want a quick AI first cut | claudecut (AI rough cut) |
-| You need images or short clips generated from an idea | claudecut (generation) |
-| You want template ideas, trending music or CapCut fonts | claudecut (templates, materials) |
-| Captions or subtitles for a talking video | claudecut (auto captions, SRT export) |
-| You want to keep editing while Claude works, or on another device | claudecut (cloud drafts) |
+| You have rough footage and want a quick AI first cut | promptcut (AI rough cut) |
+| You need images or short clips generated from an idea | promptcut (generation) |
+| You want template ideas, trending music or CapCut fonts | promptcut (templates, materials) |
+| Captions or subtitles for a talking video | promptcut (auto captions, SRT export) |
+| You want to keep editing while Claude works, or on another device | promptcut (cloud drafts) |
 | A polished, repeatable format such as listing tours or product walkthroughs, with precise cuts, keyframed moves, color grading and a sound effect library | Local project mode |
 | Footage must not leave your computer | Local project mode |
 | Removing repeats, false starts and long pauses word by word from a talking-head clip | Local project mode |
@@ -119,8 +119,8 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 ### Combining them
 
 The two modes can share inputs and outputs:
-- Use claudecut for the ideas and assets (templates, music choices, generated B-roll, captions as SRT files), then build the precise edit in local project mode.
-- Use claudecut for an AI rough cut and captions, then finish effects and color by hand in the CapCut desktop app.
+- Use promptcut for the ideas and assets (templates, music choices, generated B-roll, captions as SRT files), then build the precise edit in local project mode.
+- Use promptcut for an AI rough cut and captions, then finish effects and color by hand in the CapCut desktop app.
 
 Moving one project between the two automatically (for example, editing a cloud draft's local copy) has not been tested. Treat cloud drafts and local projects as separate.
 

@@ -14,7 +14,7 @@ function fakeFetch(responses) {
 }
 
 function tempDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), 'claudecut-test-'))
+  return fs.mkdtempSync(path.join(os.tmpdir(), 'promptcut-test-'))
 }
 
 test('accepts strings, objects and an items wrapper', () => {
