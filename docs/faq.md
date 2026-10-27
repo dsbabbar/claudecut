@@ -70,7 +70,14 @@ Yes, by remote-controlling Claude Code on your computer. In the Claude desktop a
 
 ### How do I update or remove it?
 
-In the desktop app, open **Settings → Plugins**, then the **⋯** menu next to promptcut. In a terminal, run `claude plugin update promptcut@promptcut` to update, or `claude plugin uninstall promptcut@promptcut` to remove it.
+Updates don't arrive on their own, because auto-update is off for marketplaces you add yourself. Refresh the marketplace first, then update the plugin:
+
+- **Terminal:** run `claude plugin marketplace update promptcut`, then `claude plugin update promptcut@promptcut`.
+- **Desktop app:** refresh the marketplace (in the terminal as above, or under **Settings → Plugins → + Add → Manage marketplaces**), then open **Promptcut** and click **Update**. If **Update** is greyed out, the marketplace hasn't been refreshed yet.
+
+If the update warns that `.in_use` files will be overwritten, that's safe: they only mark open sessions, not your changes. Start a new session afterwards to use the new version.
+
+To remove promptcut, run `claude plugin uninstall promptcut@promptcut`, or use the **⋯** menu next to promptcut in **Settings → Plugins**.
 
 ## Signing in
 
@@ -81,6 +88,15 @@ This usually means a region mismatch. A US internet connection needs a US-regist
 ### The browser shows "connection refused" on a localhost page after signing in
 
 The login wait expired or a firewall blocked the local callback. Run **Authenticate** again, and allow the local connection if your firewall asks.
+
+### Claude says "check login error" or that my CapCut sign-in expired
+
+CapCut sign-ins expire, often overnight. promptcut stops at the first login error and asks you to reconnect, rather than trying other tools. Reconnect, then tell Claude you're done:
+
+- **Desktop app:** type `/mcp`, search for **promptcut**, open its **Connectors** tab and connect **capcut** again. Then start a new session.
+- **Terminal:** type `/mcp`, select **capcut** and choose **Authenticate**.
+
+promptcut can't check your sign-in before you start, because Claude Code keeps the login to itself and some CapCut tools answer even when it has expired. It finds out on the first call that needs your account.
 
 ### Every CapCut tool appears twice
 

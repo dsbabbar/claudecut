@@ -54,7 +54,7 @@ Save the document as UTF-8 JSON in a temporary folder, for example `<tmp>/draft.
 | `STDRAFT_INVALID` | Nothing was saved. Read the validation details, fix the operations or document, and try once more. If it fails again, report the details to the user. |
 | `STDRAFT_VERSION_CONFLICT` | Nothing was saved, because the draft changed in the browser. Get the latest snapshot, re-apply the operations, check the summary, then save again with the new `package_id`. |
 | Unsure whether a save went through | Call `check_stdraft_state` or `get_stdraft_snapshot` first. Never repeat a save blindly. |
-| Authentication error | Follow the `capcut-connect` skill. |
+| Login error (for example `check login error` or `get user workspace failed`) | Stop and follow the `capcut-connect` skill. Do not retry or try other tools first. |
 
 ## Limits of this version
 

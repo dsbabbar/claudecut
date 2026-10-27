@@ -39,7 +39,21 @@ Never install software without the user's agreement.
 
 ## Check the connection
 
-Run a free, read-only call: `search_capcut_material` with `type: "font"`, `prompt: "font"`, `top_n: 1`. A result means the account is connected. Never use a generation, upload or draft tool to test a connection.
+Some CapCut tools answer even when the user's sign-in has expired. Material search is one of them, so a material search result does not prove the user is signed in. Never use a generation, upload or draft tool to test a connection.
+
+- If the `capcut` tools are missing, or `/mcp` shows that capcut needs authentication, the user is signed out. Go to [Log in](#log-in).
+- Otherwise, treat the first account call of the workflow (for example a template search, caption job, upload ticket or draft session) as the check. If it returns a login error, stop as described below.
+
+## Stop at the first login error
+
+CapCut sign-ins expire, often overnight. A tool result is a login error when it says the user is not logged in, a token is invalid or expired, it is unauthorized (HTTP 401), or it contains text such as `check login error` or `get user workspace failed`.
+
+On the first login error:
+
+1. Stop calling CapCut tools. Do not retry the call, try other CapCut tools or switch to another workflow to get around it.
+2. Tell the user in one or two sentences that their CapCut sign-in has expired, and give them the [Log in](#log-in) steps for the app they are using. If you don't know which app, give both.
+3. Wait for the user to say they have reconnected. In the desktop app, they may need to start a new session.
+4. Then retry the step that failed once, and continue the original request. If it fails with a login error again, say so and stop.
 
 ## Log in
 
@@ -58,6 +72,7 @@ The login only works when Claude Code runs on the user's own computer. CapCut ac
 | Browser shows "connection refused" on a `localhost` page | The login wait expired or a firewall blocked the local callback. Run **Authenticate** again and allow the local connection if the firewall asks. |
 | HTTP 502 or Bad Gateway with no tool result | CapCut's service is temporarily down. Wait and retry later. Do not log out. |
 | Each CapCut tool is listed twice | The servers were also added by hand. Remove the manual copies with `claude mcp remove capcut` and `claude mcp remove capcut-cards`. |
+| A tool says `check login error`, `get user workspace failed`, not logged in or unauthorized | The CapCut sign-in has expired. Follow [Stop at the first login error](#stop-at-the-first-login-error). |
 | Tools still missing after login | Start a new session. In a terminal, you can also run `/mcp` and choose **Reconnect** for capcut. |
 
 ## Safety

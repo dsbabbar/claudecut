@@ -67,5 +67,5 @@ Only when the user asks: call `capcut_generation_cancel` with the `task_id`, the
 ## Errors
 
 - Validation error: explain the invalid field and the allowed values.
-- Authentication error or missing tools: follow the `capcut-connect` skill.
+- Login error (for example `check login error`) or missing tools: stop and follow the `capcut-connect` skill. Do not retry or try other tools first.
 - Do not fall back to another image or video generator unless the user asks.
