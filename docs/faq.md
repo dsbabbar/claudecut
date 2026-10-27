@@ -14,6 +14,10 @@ Both connect an AI assistant to CapCut's hosted MCP server, so the CapCut featur
 - All of claudecut's skills and scripts are original. None of the official plugin's files are used.
 - CapCut's interactive cards don't display in Claude Code, so claudecut asks questions and shows results in the chat instead, including credit quotes.
 
+### Is claudecut a plugin, a skill or an MCP server?
+
+A **plugin**. It bundles 8 skills, 4 helper scripts, a setup hook and the addresses of CapCut's MCP servers. The MCP servers belong to CapCut and run on CapCut's servers; claudecut doesn't include its own. See [What's inside claudecut](whats-inside.md).
+
 ### Is it free?
 
 The plugin is free and open source under the MIT license. You need:

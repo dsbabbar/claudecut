@@ -6,7 +6,13 @@
 
 ## How it works
 
-CapCut runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server for AI assistants. claudecut connects Claude Code to that server and adds Claude-specific skills (instructions that teach Claude the right workflows), plus local helpers for uploading media and editing drafts.
+claudecut is a **Claude Code plugin**: one installable package. CapCut runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server for AI assistants, and claudecut connects Claude Code to it. claudecut does not include an MCP server of its own. The plugin adds:
+
+- **8 skills:** instructions that teach Claude the right CapCut workflows and rules
+- **4 scripts:** local helpers for uploads, draft editing, subtitle files and saving results
+- **1 hook:** a setup check that runs when a chat starts
+
+See [What's inside claudecut](docs/whats-inside.md) for how the pieces fit together.
 
 ```
 Claude Code ── claudecut plugin ──┬── capcut        (your CapCut account, OAuth login)
