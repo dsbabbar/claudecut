@@ -33,6 +33,22 @@ Claude Code
 3. Claude calls tools on **CapCut's MCP server** for the AI work: recognition, generation, search, rough cuts and drafts.
 4. When a job needs your computer (reading a file, writing a file, editing a draft document), Claude runs one of claudecut's **scripts**.
 
+## Where things run
+
+CapCut's MCP servers run in the cloud, not on your computer. All AI processing happens there, under your CapCut account.
+
+| On your computer | On CapCut's servers (cloud) |
+| --- | --- |
+| Claude Code with claudecut's skills, scripts and hook | AI processing: generation, speech recognition, rough cuts, template and material search |
+| Your original media, until you ask Claude to upload it | Uploaded copies of your media |
+| Draft editing: the script changes the draft document locally, then saves it back | Your cloud drafts, which sync to the CapCut web editor and apps |
+| Subtitle files and downloaded results | Generated images and videos |
+| Your CapCut login token, stored by Claude Code | Your account, credits and subscription |
+
+The servers are reached at `www.capcut.com` through a global content delivery network. Uploads go to ByteDance's cloud storage, and the region depends on your account. For example, a test account was assigned a Singapore (`sg`) region. CapCut's tool descriptions also mention a separate US region for US accounts.
+
+Anything you upload or generate is stored by CapCut under its [Privacy Policy](https://www.capcut.com/clause/privacy), possibly outside your country. If footage must stay on your computer, see local project mode in [Choosing a workflow](choosing-a-workflow.md).
+
 ## The two CapCut servers
 
 | Server | Address | Login | What it provides |
