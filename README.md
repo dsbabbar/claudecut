@@ -35,6 +35,8 @@ Uploading local files uses CapCut's `capcut_asset_upload_credential` tool, which
 
 If you previously added CapCut's servers by hand, remove them so each tool is listed once: `claude mcp remove capcut` and `claude mcp remove capcut-cards`.
 
+Not sure whether claudecut or editing CapCut's local project files fits your project better? See [Choosing a workflow](docs/choosing-a-workflow.md).
+
 ## What you can ask for
 
 | Feature | Example prompt | Status |
@@ -51,6 +53,26 @@ If you previously added CapCut's servers by hand, remove them so each tool is li
 **Credits:** some features spend CapCut credits. claudecut always shows the quoted cost and waits for your approval before any paid generation.
 
 **Saving results:** result links are temporary. Ask Claude to save generated images and videos, and they are downloaded to a `capcut-output` folder in your current directory. CapCut may add an "AI" watermark to generated media.
+
+## Use it from your phone
+
+claudecut runs in Claude Code on your computer, but you can drive that session from the Claude mobile app with Remote Control. First install claudecut and sign in to CapCut on the computer, then start Remote Control in whichever app you use there:
+
+| On your computer | How to start Remote Control |
+| --- | --- |
+| Claude desktop app (Windows or Mac) | In a local Claude Code session, type `/rc` |
+| Claude Code in a terminal (Windows, Mac or Linux) | In a running session, type `/rc`, or start a new one with `claude remote-control` in your working folder |
+
+Then, on your phone, open the Claude app, go to **Code**, and pick that session.
+
+Everything you ask from the phone runs on the computer. Keep in mind:
+
+- The computer must stay on and awake, with the session running.
+- Media must be on the computer. Sync new phone clips there first (for example with a cloud photo or drive app), then give Claude the computer's file path.
+- Sign in to CapCut on the computer. The login cannot be completed from the phone.
+- Result links open on the phone. Files you ask Claude to save land on the computer.
+
+A regular claude.ai chat or a cloud session cannot use claudecut, because CapCut's login only accepts a local callback address.
 
 ## Known limitations
 
