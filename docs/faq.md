@@ -75,7 +75,7 @@ Yes, by remote-controlling Claude Code on your computer. In the Claude desktop a
 Updates don't arrive on their own, because auto-update is off for marketplaces you add yourself. Refresh the marketplace first, then update the plugin:
 
 - **Terminal:** run `claude plugin marketplace update promptcut`, then `claude plugin update promptcut@promptcut`.
-- **Desktop app:** refresh the marketplace (in the terminal as above, or under **Settings → Plugins → + Add → Manage marketplaces**), then open **Promptcut** and click **Update**. If **Update** is greyed out, the marketplace hasn't been refreshed yet.
+- **Desktop app:** go to **Settings → Plugins → + Add → Manage marketplaces**, open the **⋯** menu next to **promptcut** and choose **Check for updates**. Then open **Promptcut** and click **Update**. If **Update** is greyed out, the marketplace hasn't been checked for updates yet.
 
 If the update warns that `.in_use` files will be overwritten, that's safe: they only mark open sessions, not your changes. Start a new session afterwards to use the new version.
 
