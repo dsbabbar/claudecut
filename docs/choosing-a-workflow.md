@@ -2,7 +2,7 @@
 
 There are two ways to have Claude Code edit videos for CapCut:
 
-1. **promptcut (cloud mode):** this plugin. Claude works through CapCut's hosted MCP server, under your CapCut account. Media is uploaded to CapCut, and edits are saved to cloud drafts that open in the CapCut web editor and the CapCut desktop app.
+1. **promptcut (cloud mode):** this plugin. Claude works through CapCut's hosted MCP server, under your CapCut account. Media is uploaded to CapCut, and edits are saved to cloud drafts in your CapCut account, which appear in every CapCut app signed in to that account: the web editor, the desktop apps and the mobile app.
 2. **Local project mode:** no plugin and no CapCut account connection. Claude writes the CapCut desktop app's own project file on your computer, using local tools such as ffmpeg and a speech-to-text model, while CapCut is closed. You then open the project in CapCut.
 
 Both have been used on real projects. This guide explains how each works, what they share, where they differ, and when to pick which.
@@ -14,7 +14,7 @@ Both have been used on real projects. This guide explains how each works, what t
 ```
 Claude Code ── promptcut skills ── CapCut MCP server (your account)
                      │                    ├── AI generation, templates, materials, captions, rough cuts
-                     │                    └── cloud drafts ──> web editor and desktop app
+                     │                    └── cloud drafts ──> web, desktop and mobile apps
                      └── local scripts: upload, draft editor, subtitle export, downloads
 ```
 
@@ -53,7 +53,7 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 
 | | promptcut (cloud mode) | Local project mode |
 | --- | --- | --- |
-| **Where edits land** | CapCut cloud draft (web editor and desktop app) | CapCut desktop project on one computer |
+| **Where edits land** | CapCut cloud draft (any CapCut app on your account) | CapCut desktop project on one computer |
 | **Setup** | Install the plugin, sign in to CapCut once | CapCut desktop, ffmpeg, Python, optionally a speech-to-text model; at least one existing CapCut project to copy structures from |
 | **CapCut account** | Required, and its region must match your connection | Not needed for editing |
 | **Uploads** | Footage is uploaded to CapCut | Nothing leaves your computer |
@@ -76,7 +76,7 @@ CapCut stores desktop projects in its `Projects/com.lveditor.draft` folder: unde
 **Pros**
 - CapCut's AI services: rough cuts, generation, speech recognition, templates, materials
 - Safe saves: CapCut validates drafts, and version checks protect your own edits
-- Works with CapCut open, and the result syncs to the web editor and the desktop app
+- Works with CapCut open, and the result syncs to every CapCut app signed in to your account
 - No dependence on CapCut's local file format
 - Credit costs are shown before paid generation
 

@@ -42,7 +42,7 @@ No. You sign in on CapCut's own login page, and Claude Code stores the login tok
 | Platform | Status |
 | --- | --- |
 | Windows | Tested end to end with a real CapCut account |
-| macOS | Automated tests pass; not yet tested end to end |
+| macOS | Tested end to end with a real CapCut account (Claude desktop app) |
 | Linux | Automated tests pass; not yet tested end to end |
 
 You need Claude Code 2.1.292 or later and Node.js 20 or later. ffmpeg is optional: promptcut uses it to detect portrait phone videos and for captions on mixed-language videos.
@@ -126,11 +126,11 @@ CapCut adds an "AI" watermark to some generated media. promptcut does not remove
 
 ### Where do my edits go?
 
-To a CapCut **cloud draft**. You get a link to the CapCut web editor, and the same draft also opens in the CapCut desktop app. Saving a draft doesn't export a video, so export from CapCut when you're happy with it.
+To a CapCut **cloud draft** in your account. You get a link to the CapCut web editor, and the draft also appears in every CapCut app where you are signed in with the same account: the desktop apps on Windows and Mac, and the mobile app. It usually shows as "Untitled". Saving a draft doesn't export a video, so export from CapCut when you're happy with it.
 
 ### Can I edit in CapCut while Claude is editing?
 
-Yes. Your own edits always win. If you save in the web editor or the desktop app while Claude is working, Claude's save is rejected, and it re-applies its change on top of your newer version. Having the draft open in the desktop app can save new versions on its own, which is normal.
+Yes. Your own edits always win. If you save in any CapCut app (web, desktop or mobile) while Claude is working, Claude's save is rejected, and it re-applies its change on top of your newer version. Having the draft open in the desktop app can save new versions on its own, which is normal.
 
 ### What can promptcut change in a draft?
 

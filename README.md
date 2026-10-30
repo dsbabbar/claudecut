@@ -74,7 +74,7 @@ Questions? See the [FAQ](docs/faq.md). Not sure whether promptcut or editing Cap
 | Auto captions | "Add English captions to this video and give me an SRT" | Available |
 | AI rough cut | "Cut these clips into a 30-second highlight reel" | Available |
 | Local uploads | "Use ./footage/intro.mp4 as the reference" | Available |
-| Draft editing | "Add the music and captions to my draft" | Available (drafts also open in the CapCut desktop app) |
+| Draft editing | "Add the music and captions to my draft" | Available (drafts sync to every CapCut app signed in to your account) |
 
 **CapCut Credits:** some features spend CapCut credits. promptcut always shows the quoted cost and waits for your approval before any paid generation.
 
