@@ -128,7 +128,7 @@ CapCut adds an "AI" watermark to some generated media. promptcut does not remove
 
 ### Where do my edits go?
 
-To a CapCut **cloud draft** in your account. You get a link to the CapCut web editor, and the draft also appears in every CapCut app where you are signed in with the same account: the desktop apps on Windows and Mac, and the mobile app. It usually shows as "Untitled". Saving a draft doesn't export a video, so export from CapCut when you're happy with it.
+To a CapCut **cloud draft** in your account. You get a link to the CapCut web editor, and the draft also appears in every CapCut app where you are signed in with the same account: the desktop apps on Windows and Mac, and the mobile app. It appears as "Untitled", because CapCut's draft tools can't set a name. Rename it in any CapCut app; the new name syncs everywhere. Saving a draft doesn't export a video, so export from CapCut when you're happy with it.
 
 ### Can I edit in CapCut while Claude is editing?
 

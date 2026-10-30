@@ -38,7 +38,7 @@ When `status` is `succeeded` and `total` is above 0:
 
 The list in your reply is the only place the user sees the templates. Never say cards, a gallery or previews are shown in the chat.
 
-Only show links whose origin is `https://www.capcut.com`. Never show raw responses, signatures, headers or tokens.
+Only show links whose origin is `https://www.capcut.com`. Remove tracking parameters whose names start with `utm_` (such as `utm_source=codex`) and keep the rest of the link, for example `https://www.capcut.com/template-detail/<id>`. Never show raw responses, signatures, headers or tokens.
 
 When `succeeded` returns `total` of 0, retry once with a shorter query that keeps the core goal. If that is also empty, say no templates matched and suggest one or two refinements.
 
