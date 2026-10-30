@@ -53,7 +53,9 @@ Installing the plugin sets up all skills, the CapCut server connection and the h
 
 ### How do I install it?
 
-Install it once, from either app:
+The quickest way is to ask Claude. In a local Claude Code session, paste: `Install the promptcut plugin by running: claude plugin install promptcut --marketplace dsbabbar/promptcut`. Approve the command, start a new session, and sign in to CapCut as described below.
+
+Or install it yourself, from either app:
 
 - **Claude desktop app:** type `/plugin` in a Code session (or open **Settings → Plugins**), click **+ Add → Add marketplace → Add from a repository**, enter `dsbabbar/promptcut` and click **Sync**. Then on **Discover**, open the arrow next to **Add** on **Promptcut** and choose **Install for me**.
 - **Terminal:** run `claude plugin install promptcut --marketplace dsbabbar/promptcut`. Inside a terminal session, type `/plugin install promptcut --marketplace dsbabbar/promptcut` and choose **Install for you (user scope)**.
