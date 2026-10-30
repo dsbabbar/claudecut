@@ -32,6 +32,14 @@ promptcut's scripts have no other dependencies. Plugins can't install software, 
 
 ## Install
 
+**Quickest way, if you have Claude Code for the terminal: ask Claude to install it.** In a local Claude Code session, paste:
+
+```
+Install the promptcut plugin by running: claude plugin install promptcut --marketplace dsbabbar/promptcut
+```
+
+Approve the command when Claude asks. Then start a new session and sign in to CapCut (step 2 below). This needs the `claude` command, which comes with [Claude Code for the terminal](https://code.claude.com). The Claude desktop app doesn't add it, so with only the desktop app, Claude reports `command not found: claude`. Use the desktop app steps in step 1 instead.
+
 1. **Install the plugin.** Pick whichever app you use. Both put promptcut in the same place on your computer (`~/.claude/`), so one install covers the terminal and the desktop app.
 
    **Claude desktop app (Windows or Mac):**
